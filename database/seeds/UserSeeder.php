@@ -13,6 +13,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'Superadmin',
+            'role_id' => 1,
             'email' => 'superadmin'.'@gmail.com',
             'password' => Hash::make('qwerty123'),
         ]);
