@@ -15,8 +15,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-})->middleware('auth');
+})->middleware(['auth', 'activated'])->name('index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'admin',  'middleware' => ['auth','activated','superadmin']], function()
+{
+    Route::get('/list', 'AdminController@list')->name('admin.list');   
+    Route::get('/activate/{id}', 'AdminController@activate')->name('admin.activate');    
+    Route::get('/revoke/{id}', 'AdminController@revoke')->name('admin.revoke');
+});
+
+
+
+
