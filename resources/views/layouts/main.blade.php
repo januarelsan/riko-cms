@@ -93,7 +93,13 @@
                                             <div class="u-img"><img src="{{asset ('material/images/users/1.jpg')}}" alt="user"></div>
                                             <div class="u-text">
                                                 <h4>{{ Auth::user()->name }}</h4>
-                                                <p class="text-muted">-</p><a href="#" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                                <p class="text-muted">-</p>
+                                                @if (Auth::user()->isActivated())
+                                                    <a href="#" class="btn btn-rounded btn-success">View Profile</a>
+                                                @else
+                                                    <i class="btn-rounded btn-danger">Inactive</i>
+                                                @endif
+                                            </div>
                                         </div>
                                     </li>                                    
                                     <li>
@@ -215,6 +221,9 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="{{asset ('material/plugins/styleswitcher/jQuery.style.switcher.js')}}"></script>
+    <!-- This is data table -->
+    <script src="{{asset ('material/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    @yield('scripts')
 </body>
 
 </html>
