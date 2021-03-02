@@ -29,23 +29,23 @@
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="exampleInputEmail1">Question</label>
-                            <textarea class="form-control" rows="3" name="question"></textarea>
+                            <textarea required class="form-control" rows="3" name="question"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Option 1</label>
-                            <input type="text" class="form-control" name="option_0">
+                            <input required type="text" class="form-control" name="option_0">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Option 2</label>
-                            <input type="text" class="form-control" name="option_1">
+                            <input required type="text" class="form-control" name="option_1">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Option 3</label>
-                            <input type="text" class="form-control" name="option_2">
+                            <input required type="text" class="form-control" name="option_2">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Option 4</label>
-                            <input type="text" class="form-control" name="option_3">
+                            <input required type="text" class="form-control" name="option_3">
                         </div>
                         <div class="form-group">
                             <label>Correct Option</label>
@@ -56,7 +56,7 @@
                                 <option value="3">Option 4</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
+                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Add</button>
                         
                     </form>
                 </div>
@@ -74,15 +74,15 @@
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="exampleInputEmail1">Question</label>
-                            <textarea class="form-control" rows="3" name="question"></textarea>
+                            <textarea required class="form-control" rows="3" name="question"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Option 1</label>
-                            <input type="text" class="form-control" name="option_0">
+                            <input required type="text" class="form-control" name="option_0">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Option 2</label>
-                            <input type="text" class="form-control" name="option_1">
+                            <input required type="text" class="form-control" name="option_1">
                         </div>
                         
                         <div class="form-group">
@@ -92,7 +92,7 @@
                                 <option value="1">Option 2</option>                          
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
+                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Add</button>
                         
                     </form>
                 </div>
