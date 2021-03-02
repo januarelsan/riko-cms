@@ -4,6 +4,12 @@
         <li>
             <a href="{{route('index')}}" aria-expanded="false"><i class="fa fa-circle"></i><span class="hide-menu">Dashboard</span></a>
         </li>
+        <li>
+            <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Player</span></a>
+            <ul aria-expanded="false" class="collapse">                
+                <li><a href="{{route('player.list')}}">List</a></li>
+            </ul>
+        </li>  
         
     </ul>
 </nav>
