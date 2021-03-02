@@ -10,6 +10,15 @@
                 <li><a href="{{route('player.list')}}">List</a></li>
             </ul>
         </li>  
+        <li>
+            <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-alphabetical"></i><span class="hide-menu">Quiz</span></a>
+            <ul aria-expanded="false" class="collapse">                
+                <li><a href="{{route('quiz.form')}}">Add</a></li>
+            </ul>
+            <ul aria-expanded="false" class="collapse">                
+                <li><a href="{{route('quiz.list')}}">List</a></li>
+            </ul>
+        </li>  
         
     </ul>
 </nav>

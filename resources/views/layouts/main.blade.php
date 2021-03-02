@@ -13,6 +13,8 @@
     <title>RIKO Content Management System</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{asset ('material/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- toast CSS -->
+    <link href="{{asset ('material/plugins/toast-master/css/jquery.toast.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{asset ('material/css/style.css')}}" rel="stylesheet">
     <!-- You can change the theme colors from here -->

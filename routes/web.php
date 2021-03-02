@@ -28,6 +28,18 @@ Route::group(['prefix' => 'admin',  'middleware' => ['auth','activated','superad
     Route::get('/revoke/{id}', 'AdminController@revoke')->name('admin.revoke');
 });
 
+Route::group(['prefix' => 'player',  'middleware' => ['auth','activated']], function()
+{
+    Route::get('/list', 'PlayerController@list')->name('player.list');       
+});
+
+Route::group(['prefix' => 'quiz',  'middleware' => ['auth','activated']], function()
+{
+    Route::get('/list', 'QuizController@list')->name('quiz.list');       
+    Route::get('/form', 'QuizController@form')->name('quiz.form');       
+    Route::post('/store', 'QuizController@store')->name('quiz.store');       
+});
+
 
 
 
