@@ -19,6 +19,40 @@ class QuizController extends Controller
         return view('quiz-form');
     }
 
+    public function editForm($id){        
+        $quiz = Quiz::find($id);
+        $options = Option::where('quiz_id', '=', $id)->get();
+        // return $options;
+        // return $quiz;
+        return view('quiz-edit', compact('quiz','options'));
+    }
+
+    public function editStore(Request $request){        
+        
+        $reqArray = $request->all();       
+        $keys = array_keys($reqArray);
+        
+
+        $quiz = Quiz::find($request->id);
+        
+        $quiz->question = $request->question;
+        $quiz->save();
+
+        $optionIndex = 0;
+        for ($i=3; $i < count($keys) - 1; $i++) { 
+            $options = Option::where('quiz_id', '=', $quiz->id)->get();
+            $options[$optionIndex]->value = $reqArray[$keys[$i]];            
+            if($reqArray['correct_option'] == ($i - 3)){
+                $options[$optionIndex]->correct_option = 1;                
+            }else{
+                $options[$optionIndex]->correct_option = 0;                
+            }
+
+            $options[$optionIndex]->save();            
+            $optionIndex++;
+        }
+    }
+
     public function store(Request $request){        
         
         $reqArray = $request->all();       
