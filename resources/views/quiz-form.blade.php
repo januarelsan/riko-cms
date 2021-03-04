@@ -123,12 +123,12 @@
 <script src="{{asset ('material/plugins/toast-master/js/jquery.toast.js')}}"></script>
 <script src="{{asset ('material/js/toastr.js')}}"></script>
 
-@if(Session::has('success'))
+@if(Session::has('message'))
     <script>    
     $(function() {        
         $("document").ready(function(){
             $.toast({                
-                text: 'Question Successfully Added',
+                text: 'Question Added',
                 position: 'top-right',
                 loaderBg:'#ff6849',
                 icon: 'success',

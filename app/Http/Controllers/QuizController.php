@@ -11,7 +11,7 @@ class QuizController extends Controller
     //
     
     public function list(){        
-        $quizzes = Quiz::all();
+        $quizzes = Quiz::where('removed', '=', 0)->get();
         return view('quiz-list', compact('quizzes'));
     }
     public function form(){        
@@ -51,6 +51,7 @@ class QuizController extends Controller
             $options[$optionIndex]->save();            
             $optionIndex++;
         }
+        return redirect()->route('quiz.list')->with('message');
     }
 
     public function store(Request $request){        
@@ -76,7 +77,17 @@ class QuizController extends Controller
             
             Option::create($option);
         }
+        
+        return redirect()->back()->with('message');   
+    }
+
+    public function remove($id){        
+        
+        $quiz = Quiz::find($id);       
+        $quiz->removed = 1;
+        
+        $quiz->save();        
               
-        return redirect()->back()->with('success', 'Question Added');   
+        return redirect()->back()->with('message');   
     }
 }

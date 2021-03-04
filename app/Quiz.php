@@ -12,7 +12,7 @@ class Quiz extends Model
      * @var array
      */
     protected $fillable = [
-        'question',
+        'question', 'removed',
     ];
 
     public function options()

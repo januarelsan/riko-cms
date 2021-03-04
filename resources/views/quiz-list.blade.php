@@ -38,7 +38,7 @@
                                 <td>{{$quiz->question}}</td>                        
                                 <td>                                    
                                     <a href="{{route('quiz.edit.form',$quiz->id)}}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                    <a href="#" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash-o text-danger m-r-10"></i> </a>
+                                    <a href="{{route('quiz.remove',$quiz->id)}}" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash-o text-danger m-r-10"></i> </a>
                                 </td>                                
                             </tr>                            
                             @endforeach
