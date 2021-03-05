@@ -43,6 +43,10 @@ Route::group(['prefix' => 'quiz',  'middleware' => ['auth','activated']], functi
     Route::post('/store', 'QuizController@store')->name('quiz.store');       
 });
 
+Route::get('export', 'QuizController@export')->name('export');
+Route::get('importExportView', 'QuizController@importExportView');
+Route::post('import', 'QuizController@import')->name('import');
+
 
 
 

@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Quiz;
 use App\Option;
+use App\Imports\QuizImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class QuizController extends Controller
 {
     //
     
     public function list(){        
-        $quizzes = Quiz::where('removed', '=', 0)->get();
+        // $quizzes = Quiz::where('removed', '=', 0)->get();
+        $quizzes = Quiz::all();
         return view('quiz-list', compact('quizzes'));
     }
     public function form(){        
@@ -89,5 +92,21 @@ class QuizController extends Controller
         $quiz->save();        
               
         return redirect()->back()->with('message');   
+    }
+
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function importExportView()
+    {
+       return view('quiz-import');
+    }
+
+    
+    public function import() 
+    {
+        Excel::import(new QuizImport,request()->file('file'));
+           
+        return back();
     }
 }
