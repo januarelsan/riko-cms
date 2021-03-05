@@ -13,10 +13,7 @@
 @endsection
 
 @section('content')
-@if(Session::has('message'))
 
-
-@endif
 <div class="row">
 
     <div class="col-md-6">

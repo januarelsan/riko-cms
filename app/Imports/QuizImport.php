@@ -6,9 +6,10 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithUpserts;
 use App\Quiz;
 
-class QuizImport implements ToModel, WithHeadingRow
+class QuizImport implements ToModel, WithHeadingRow, WithUpserts
 {
     /**
     * @param Collection $collection
@@ -31,5 +32,13 @@ class QuizImport implements ToModel, WithHeadingRow
             'question'     => $row['question'],                        
             'removed'     => $row['removed'],                        
         ]);
+    }
+
+    /**
+     * @return string|array
+     */
+    public function uniqueBy()
+    {
+        return 'question';
     }
 }
