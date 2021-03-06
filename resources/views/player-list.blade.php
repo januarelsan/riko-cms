@@ -18,30 +18,27 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Data Export</h4>
-                <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
+                <h4 class="card-title">Player Data</h4>
+                {{-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> --}}
                 <div class="table-responsive m-t-40">
                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Rank</th>
-                                
+                                <th>UUID</th>                                
                             </tr>
                         </thead>
                         
                         <tbody>
-                            <tr>
-                                <td>Tiger</td>
-                                <td>tiger@gmail.com</td>                                
-                                <td>2</td>                                
-                            </tr>
-                            <tr>
-                                <td>Lion</td>
-                                <td>lion@gmail.com</td>                                
-                                <td>1</td>
-                            </tr>                            
+                            @foreach ($players as $player)                                
+                                <tr>
+                                    <td>{{$player->name}}</td>
+                                    <td>{{$player->email}}</td>                              
+                                    <td>{{$player->firebase_uuid}}</td>                      
+                                </tr>
+                            @endforeach
+                            
                         </tbody>
                     </table>
                 </div>
