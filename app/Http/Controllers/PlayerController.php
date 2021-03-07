@@ -13,10 +13,14 @@ class PlayerController extends Controller
         return view('player-list', compact('players'));
     }
 
-    public function authenticate(Request $request){
-        // Retrieve user by uuid or create it if it doesn't exist...
-        $flight = Flight::firstOrCreate([
-            'uuid' => 'London to Paris'
-        ]);
+    public function auth(Request $request){
+                
+        $player = Player::firstOrNew(['firebase_uuid'=> $request->firebase_uuid]); 
+        $player->firebase_uuid = $request->firebase_uuid;
+        $player->name = $request->name;
+        $player->email = $request->email;
+        $player->save();
+        
+        return $player;
     }
 }

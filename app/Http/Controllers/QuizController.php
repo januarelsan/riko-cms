@@ -15,9 +15,16 @@ class QuizController extends Controller
     public function list(){        
         $quizzes = Quiz::where('removed', '=', 0)->get();
         
-    
+        // return $quizzes;
         return view('quiz-list', compact('quizzes'));
     }
+
+    public function listAPI(){        
+        $quizzes = Quiz::where('removed', '=', 0)->get();
+        
+        return $quizzes;        
+    }
+
     public function form(){        
         
         return view('quiz-form');

@@ -33,12 +33,14 @@
                         <tbody>
                             @foreach ($players as $player)                                
                                 <tr>
-                                    <td>{{$player->name}}</td>
+
+                                    <td>{{$player->name ?: 'Name Not Found'}}</td>
+                                    
+                                    
                                     <td>{{$player->email}}</td>                              
                                     <td>{{$player->firebase_uuid}}</td>                      
                                 </tr>
-                            @endforeach
-                            
+                            @endforeach                            
                         </tbody>
                     </table>
                 </div>

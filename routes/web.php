@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,20 +29,34 @@ Route::group(['prefix' => 'admin',  'middleware' => ['auth','activated','superad
     Route::get('/revoke/{id}', 'AdminController@revoke')->name('admin.revoke');
 });
 
-Route::group(['prefix' => 'player',  'middleware' => ['auth','activated']], function()
+Route::group(['prefix' => 'player'], function()
 {
-    Route::get('/list', 'PlayerController@list')->name('player.list');       
+    Route::post('/auth', 'PlayerController@auth')->name('player.auth');      
+    Route::group(['middleware' => ['auth','activated']], function()
+    {
+        Route::get('/list', 'PlayerController@list')->name('player.list');                   
+    });
 });
+
+
+
 
 Route::group(['prefix' => 'quiz',  'middleware' => ['auth','activated']], function()
 {
     Route::get('/list', 'QuizController@list')->name('quiz.list');       
+    Route::get('quiz/list/api', 'QuizController@listAPI')->name('quiz.list.api');       
     Route::get('/form', 'QuizController@form')->name('quiz.form');       
     Route::get('/edit/{id}', 'QuizController@editForm')->name('quiz.edit.form');       
     Route::get('/remove/{id}', 'QuizController@remove')->name('quiz.remove');       
     Route::post('/edit/store', 'QuizController@editStore')->name('quiz.edit.store');       
     Route::post('/store', 'QuizController@store')->name('quiz.store');       
 });
+
+
+Route::get('token/', function() {
+    return csrf_token();
+});
+
 
 Route::get('export', 'QuizController@export')->name('export');
 Route::get('importExportView', 'QuizController@importExportView');
