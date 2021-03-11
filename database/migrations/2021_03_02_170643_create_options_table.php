@@ -18,7 +18,7 @@ class CreateOptionsTable extends Migration
             $table->foreignId('quiz_id')->constrained('quizzes');
             $table->string('value');
             $table->boolean('correct_option')->nullable();
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 
