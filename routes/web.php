@@ -32,6 +32,8 @@ Route::group(['prefix' => 'admin',  'middleware' => ['auth','activated','superad
 Route::group(['prefix' => 'player'], function()
 {
     Route::post('/auth', 'PlayerController@auth')->name('player.auth');      
+    Route::get('/checkActivated/{uuid}', 'PlayerController@checkActivated')->name('player.checkActivated');      
+
     Route::group(['middleware' => ['auth','activated']], function()
     {
         Route::get('/list', 'PlayerController@list')->name('player.list');     

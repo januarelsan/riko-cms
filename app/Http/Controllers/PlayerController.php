@@ -24,6 +24,11 @@ class PlayerController extends Controller
         return $player;
     }
 
+    public function checkActivated($uuid){
+        $player = Player::where('firebase_uuid',$uuid)->first();             
+        return $player->activated;        
+    }
+
     public function activate($id){
         $player = Player::find($id);             
         $player->activated = 1;
