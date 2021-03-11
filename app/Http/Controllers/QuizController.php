@@ -20,8 +20,8 @@ class QuizController extends Controller
     }
 
     public function listAPI(){        
-        $quizzes = Quiz::where('removed', '=', 0)->get();
-        
+    
+        $quizzes = Quiz::where('removed', '=', 0)->inRandomOrder()->limit(5)->with('options')->get(['id','question']);                
         return $quizzes;        
     }
 
