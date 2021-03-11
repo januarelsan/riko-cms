@@ -12,6 +12,11 @@ class Player extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'firebase_uuid', 'email',
+        'name', 'firebase_uuid', 'email', 'activated',
     ];
+
+    public function isActivated()
+    {
+        return $this->activated ? true : false;
+    }
 }

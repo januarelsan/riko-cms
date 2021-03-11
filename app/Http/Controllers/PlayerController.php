@@ -9,7 +9,7 @@ class PlayerController extends Controller
 {
     //
     public function list(){        
-        $players = Player::where('activated',1)->get();        
+        $players = Player::all();        
         return view('player-list', compact('players'));
     }
 
@@ -22,5 +22,19 @@ class PlayerController extends Controller
         $player->save();
         
         return $player;
+    }
+
+    public function activate($id){
+        $player = Player::find($id);             
+        $player->activated = 1;
+        $player->save();           
+        return redirect()->route('player.list');
+    }
+
+    public function deactivate($id){
+        $player = Player::find($id);             
+        $player->activated = 0;
+        $player->save();           
+        return redirect()->route('player.list');
     }
 }

@@ -27,6 +27,8 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>UUID</th>                                
+                                <th>Status</th>    
+                                <th>Actions</th>                                
                             </tr>
                         </thead>
                         
@@ -38,7 +40,15 @@
                                     
                                     
                                     <td>{{$player->email}}</td>                              
-                                    <td>{{$player->firebase_uuid}}</td>                      
+                                    <td>{{$player->firebase_uuid}}</td>      
+                                    
+                                    @if ($player->isActivated())                                        
+                                    <td><p class="text-primary"><b>Activated</b></p></td>
+                                    <td><a href="{{route('player.deactivate',$player->id)}}"><button type="button" class="btn waves-effect waves-light btn-xs btn-danger">Deactivate</button></a></td>                                    
+                                    @else
+                                    <td><p class="text-danger"><b>Inactive</b></p></td>
+                                    <td><a href="{{route('player.activate',$player->id)}}"><button type="button" class="btn waves-effect waves-light btn-xs btn-info">Activate</button></a></td>                                    
+                                    @endif
                                 </tr>
                             @endforeach                            
                         </tbody>
@@ -106,7 +116,15 @@ $(document).ready(function() {
 $('#example23').DataTable({
     dom: 'Bfrtip',
     buttons: [
-        'copy', 'csv', 'excel', 'pdf', 'print'
+        
+        {
+            extend: 'excelHtml5',
+            text: 'Export Data to Excel',
+            exportOptions: {
+                columns: [ 0,1,2 ]
+            }
+        },
+            
     ]
 });
 </script>
