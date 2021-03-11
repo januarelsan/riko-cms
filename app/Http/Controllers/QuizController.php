@@ -107,7 +107,7 @@ class QuizController extends Controller
     */
     public function importExportView()
     {
-       return view('quiz-import');
+       return view('quiz-import-form');
     }
 
     

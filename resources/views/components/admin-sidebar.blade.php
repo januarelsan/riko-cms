@@ -16,6 +16,9 @@
                 <li><a href="{{route('quiz.form')}}">Add</a></li>
             </ul>
             <ul aria-expanded="false" class="collapse">                
+                <li><a href="{{route('quiz.import.form')}}">Import Excel (Bulk)</a></li>
+            </ul>
+            <ul aria-expanded="false" class="collapse">                
                 <li><a href="{{route('quiz.list')}}">List</a></li>
             </ul>
         </li>  
