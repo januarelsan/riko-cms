@@ -28,46 +28,5 @@ class AdminController extends Controller
         return redirect()->route('admin.list');
     }
 
-    // public function listView(){
-    //     $menus = Menu::all();                
-    //     return view('menu', compact('menus'));        
-    // }
     
-    // public function showById($id){
-    //     //Tampilkan Menu berdasarkan id
-    //     $menu = Menu::findOrFail($id);
-    //     return $menu;
-    // }
-
-    // public function showByName($name){
-    //     //Tampilkan Menu berdasarkan name
-    //     $menus = Menu::where('name' , '=', $name)->get();
-    //     return $menus;
-    // }
-
-    // public function showByPrice($price){
-    //     //Tampilkan Menu berdasarkan id
-    //     $menus = Menu::where('price' , '=', $price)->get();
-    //     return $menus;
-    // }
-
-    // public function store(Request $request)
-    // {
-        
-
-    //     $menu = Menu::create([
-    //         'name' => 'Bebek',
-    //         'price' => 7000,
-    //     ]);
-
-    //     // $menu->save();
-    // }
-
-    // public function update(Request $request){
-    //     //Membuat Menu        
-    // }
-
-    // public function delete($id){
-    //     //Membuat Menu
-    // }
 }
