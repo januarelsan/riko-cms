@@ -19,10 +19,16 @@ class QuizController extends Controller
         return view('quiz-list', compact('quizzes'));
     }
 
-    public function listAPI(){        
+    public function listAPIFour(){        
     
-        $quizzes = Quiz::where('removed', '=', 0)->inRandomOrder()->limit(5)->with('options')->get(['id','question']);                
-        return $quizzes;        
+        $quizzes = Quiz::has('options', '>=', 4)->where('removed', '=', 0)->inRandomOrder()->limit(5)->with('options')->get(['id','question']);                                
+        return $quizzes;
+    }
+
+    public function listAPITwo(){        
+    
+        $quizzes = Quiz::has('options', '==', 2)->where('removed', '=', 0)->inRandomOrder()->limit(5)->with('options')->get(['id','question']);                                
+        return $quizzes;
     }
 
     public function form(){        

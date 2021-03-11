@@ -45,7 +45,8 @@ Route::group(['prefix' => 'player'], function()
 
 Route::group(['prefix' => 'quiz'], function()
 {
-    Route::get('/list/api', 'QuizController@listAPI')->name('quiz.list.api');       
+    Route::get('/list/four/api', 'QuizController@listAPIFour')->name('quiz.list.four.api');       
+    Route::get('/list/two/api', 'QuizController@listAPITwo')->name('quiz.list.two.api');       
 
     Route::group(['middleware' => ['auth','activated']], function()
     {
