@@ -20,8 +20,7 @@ class CreatePlayersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();            
             $table->boolean('activated')->default(1);
-            $table->rememberToken();
-            $table->timestamps();
+            $table->rememberToken();            
         });
     }
 

@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['prefix' => 'quiz'], function()
+{
+    Route::get('/list/four', 'QuizAPIController@listAPIFour')->name('quiz.list.four');       
+    Route::get('/list/two', 'QuizAPIController@listAPITwo')->name('quiz.list.two');       
+    Route::post('/answer/store', 'QuizAPIController@answer')->name('quiz.answer.store');        
+});

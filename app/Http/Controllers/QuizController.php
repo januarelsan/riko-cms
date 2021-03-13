@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Quiz;
 use App\Option;
+use App\Activity;
+use App\PlayerActivity;
+use App\PlayerQuizAnswer;
+
 use App\Imports\QuizImport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -13,34 +17,17 @@ class QuizController extends Controller
     //
     
     public function list(){        
-        $quizzes = Quiz::where('removed', '=', 0)->get();
-        
-        // return $quizzes;
+        $quizzes = Quiz::where('removed', '=', 0)->get();                
         return view('quiz-list', compact('quizzes'));
     }
 
-    public function listAPIFour(){        
-    
-        $quizzes = Quiz::has('options', '>=', 4)->where('removed', '=', 0)->inRandomOrder()->limit(5)->with('options')->get(['id','question']);                                
-        return $quizzes;
-    }
-
-    public function listAPITwo(){        
-    
-        $quizzes = Quiz::has('options', '==', 2)->where('removed', '=', 0)->inRandomOrder()->limit(5)->with('options')->get(['id','question']);                                
-        return $quizzes;
-    }
-
-    public function form(){        
-        
+    public function form(){                
         return view('quiz-form');
-    }
+    }    
 
     public function editForm($id){        
         $quiz = Quiz::find($id);
-        $options = Option::where('quiz_id', '=', $id)->get();
-        // return $options;
-        // return $quiz;
+        $options = Option::where('quiz_id', '=', $id)->get();        
         return view('quiz-edit', compact('quiz','options'));
     }
 

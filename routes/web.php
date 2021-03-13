@@ -43,24 +43,18 @@ Route::group(['prefix' => 'player'], function()
 });
 
 
+Route::group(['prefix' => 'quiz' , 'middleware' => ['auth','activated']],  function()
+{    
 
+    Route::get('/list', 'QuizController@list')->name('quiz.list');       
+    Route::get('/form', 'QuizController@form')->name('quiz.form');       
+    Route::get('/edit/{id}', 'QuizController@editForm')->name('quiz.edit.form');       
+    Route::get('/remove/{id}', 'QuizController@remove')->name('quiz.remove');       
+    Route::post('/edit/store', 'QuizController@editStore')->name('quiz.edit.store');       
+    Route::post('/store', 'QuizController@store')->name('quiz.store');       
+    Route::get('/import/form', 'QuizController@importExportView')->name('quiz.import.form');       
+    Route::post('/import/store', 'QuizController@import')->name('quiz.import.store');
 
-Route::group(['prefix' => 'quiz'], function()
-{
-    Route::get('/list/four/api', 'QuizController@listAPIFour')->name('quiz.list.four.api');       
-    Route::get('/list/two/api', 'QuizController@listAPITwo')->name('quiz.list.two.api');       
-
-    Route::group(['middleware' => ['auth','activated']], function()
-    {
-        Route::get('/list', 'QuizController@list')->name('quiz.list');       
-        Route::get('/form', 'QuizController@form')->name('quiz.form');       
-        Route::get('/edit/{id}', 'QuizController@editForm')->name('quiz.edit.form');       
-        Route::get('/remove/{id}', 'QuizController@remove')->name('quiz.remove');       
-        Route::post('/edit/store', 'QuizController@editStore')->name('quiz.edit.store');       
-        Route::post('/store', 'QuizController@store')->name('quiz.store');       
-        Route::get('import/form', 'QuizController@importExportView')->name('quiz.import.form');       
-        Route::post('import/store', 'QuizController@import')->name('quiz.import.store');
-    });
 });
 
 
