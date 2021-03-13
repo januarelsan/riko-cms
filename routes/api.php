@@ -24,3 +24,9 @@ Route::group(['prefix' => 'quiz'], function()
     Route::get('/list/two', 'QuizAPIController@listAPITwo')->name('quiz.list.two');       
     Route::post('/answer/store', 'QuizAPIController@answer')->name('quiz.answer.store');        
 });
+
+Route::group(['prefix' => 'player'], function()
+{
+    Route::post('/auth', 'PlayerAPIController@auth')->name('player.auth');      
+    Route::get('/checkActivated/{uuid}', 'PlayerAPIController@checkActivated')->name('player.checkActivated');      
+});

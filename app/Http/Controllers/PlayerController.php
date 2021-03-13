@@ -13,22 +13,6 @@ class PlayerController extends Controller
         return view('player-list', compact('players'));
     }
 
-    public function auth(Request $request){
-                
-        $player = Player::firstOrNew(['firebase_uuid'=> $request->firebase_uuid]); 
-        $player->firebase_uuid = $request->firebase_uuid;
-        $player->name = $request->name;
-        $player->email = $request->email;
-        $player->save();
-        
-        return $player;
-    }
-
-    public function checkActivated($uuid){
-        $player = Player::where('firebase_uuid',$uuid)->first();             
-        return $player->activated;        
-    }
-
     public function activate($id){
         $player = Player::find($id);             
         $player->activated = 1;

@@ -29,23 +29,20 @@ Route::group(['prefix' => 'admin',  'middleware' => ['auth','activated','superad
     Route::get('/revoke/{id}', 'AdminController@revoke')->name('admin.revoke');
 });
 
-Route::group(['prefix' => 'player'], function()
+Route::group(['prefix' => 'player' , 'middleware' => ['auth','activated']], function()
 {
-    Route::post('/auth', 'PlayerController@auth')->name('player.auth');      
-    Route::get('/checkActivated/{uuid}', 'PlayerController@checkActivated')->name('player.checkActivated');      
+    
 
-    Route::group(['middleware' => ['auth','activated']], function()
-    {
-        Route::get('/list', 'PlayerController@list')->name('player.list');     
-        Route::get('/activate/{id}', 'PlayerController@activate')->name('player.activate');    
-        Route::get('/deactivate/{id}', 'PlayerController@deactivate')->name('player.deactivate');              
-    });
+    
+    Route::get('/list', 'PlayerController@list')->name('player.list');     
+    Route::get('/activate/{id}', 'PlayerController@activate')->name('player.activate');    
+    Route::get('/deactivate/{id}', 'PlayerController@deactivate')->name('player.deactivate');              
+    
 });
 
 
 Route::group(['prefix' => 'quiz' , 'middleware' => ['auth','activated']],  function()
 {    
-
     Route::get('/list', 'QuizController@list')->name('quiz.list');       
     Route::get('/form', 'QuizController@form')->name('quiz.form');       
     Route::get('/edit/{id}', 'QuizController@editForm')->name('quiz.edit.form');       
