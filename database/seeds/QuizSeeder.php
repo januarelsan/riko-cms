@@ -13,7 +13,7 @@ class QuizSeeder extends Seeder
     {
         //
         $faker = Faker\Factory::create();    
-        for ($i=0; $i < 2; $i++) { 
+        for ($i=0; $i < 25; $i++) { 
             # code...
             DB::table('quizzes')->insert([            
                 'question' => $faker->realText($maxNbChars = 50, $indexSize = 2),    
@@ -35,7 +35,7 @@ class QuizSeeder extends Seeder
                 if ($correct_option == $j) {                    
                     $option = DB::table('options')->insert([            
                         'quiz_id' => $i + 1,
-                        'value' => $faker->realText($maxNbChars = 20, $indexSize = 2),    
+                        'value' => 'benar ' . $faker->realText($maxNbChars = 20, $indexSize = 2),    
                         'correct_option' => 1,
                     ]);
                 } else {
