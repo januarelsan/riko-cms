@@ -16,6 +16,8 @@ class Option extends Model
         'quiz_id', 'value', 'correct_option',
     ];
 
+    public $timestamps = false;
+
     public function quiz()
     {
         return $this->belongsTo(Quiz::class);
