@@ -15,6 +15,8 @@ class Player extends Model
         'name', 'firebase_uuid', 'email', 'activated',
     ];
 
+    public $timestamps = false;
+
     public function isActivated()
     {
         return $this->activated ? true : false;
