@@ -22,4 +22,9 @@ class PlayerAPIController extends Controller
         $player = Player::where('email',$email)->first();             
         return $player->activated;        
     }
+
+    public function list(){        
+        $players = Player::limit(10)->get(['email']);
+        return $players;        
+    }
 }
