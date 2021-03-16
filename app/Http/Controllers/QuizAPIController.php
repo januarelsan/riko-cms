@@ -23,16 +23,14 @@ class QuizAPIController extends Controller
         $playerActivity = PlayerActivity::create($data);        
         //Create Player Activity - End
 
-        // //Create Player Quiz Answer
-        // $playerQuizAnswer = new PlayerQuizAnswer;
-
-        // $playerQuizAnswer->player_activity_id = $playerActivity->id;
-        // $playerQuizAnswer->option_id = $request->option_id;
-
-        // $playerQuizAnswer->save();
-
-        return "Answer Sent";
-        
+        //Create Player Quiz Answer - Start
+        $data = [
+            'player_activity_id' => $playerActivity->id,
+            'option_id' => $request->option_id,    
+        ];
+        $playerQuizAnswer = PlayerQuizAnswer::create($data);        
+        //Create Player Quiz Answer - End
+        return "Player Quiz Answer Sent";        
     }
 
     public function listAPIFour(){        
