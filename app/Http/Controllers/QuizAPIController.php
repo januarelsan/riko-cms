@@ -15,19 +15,21 @@ class QuizAPIController extends Controller
     public function answer(Request $request){        
         
         //Create Player Activity - Start
-        $playerActivity = new PlayerActivity;
-        $playerActivity->player_uuid = $request->player_uuid;
-        $playerActivity->activity_id = 1; //Player Answer Quiz
-        $playerActivity->save();
+        $data = [
+            'player_uuid' => $request->player_uuid,            
+            'activity_id' => 1,            
+        ];
+
+        $playerActivity = PlayerActivity::create($data);        
         //Create Player Activity - End
 
-        //Create Player Quiz Answer
-        $playerQuizAnswer = new PlayerQuizAnswer;
+        // //Create Player Quiz Answer
+        // $playerQuizAnswer = new PlayerQuizAnswer;
 
-        $playerQuizAnswer->player_activity_id = $playerActivity->id;
-        $playerQuizAnswer->option_id = $request->option_id;
+        // $playerQuizAnswer->player_activity_id = $playerActivity->id;
+        // $playerQuizAnswer->option_id = $request->option_id;
 
-        $playerQuizAnswer->save();
+        // $playerQuizAnswer->save();
 
         return "Answer Sent";
         
