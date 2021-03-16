@@ -9,17 +9,17 @@ class PlayerAPIController extends Controller
 {
     public function auth(Request $request){
                 
-        $player = Player::firstOrNew(['firebase_uuid'=> $request->firebase_uuid]); 
+        $player = Player::firstOrNew(['email'=> $request->email]); 
         $player->firebase_uuid = $request->firebase_uuid;
         $player->name = $request->name;
         $player->email = $request->email;
         $player->save();
         
-        return $player;
+        return $player->email . " Auth Succeed"; 
     }
     
-    public function checkActivated($uuid){        
-        $player = Player::where('firebase_uuid',$uuid)->first();             
+    public function checkActivated($email){        
+        $player = Player::where('email',$email)->first();             
         return $player->activated;        
     }
 }
