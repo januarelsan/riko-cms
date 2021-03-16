@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Player;
 
 class PlayerAPIController extends Controller
 {
@@ -17,7 +18,7 @@ class PlayerAPIController extends Controller
         return $player;
     }
     
-    public function checkActivated($uuid){
+    public function checkActivated($uuid){        
         $player = Player::where('firebase_uuid',$uuid)->first();             
         return $player->activated;        
     }
