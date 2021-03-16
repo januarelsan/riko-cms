@@ -22,17 +22,21 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin',  'middleware' => ['auth','activated','superadmin']], function()
+Route::group(['prefix' => 'admin',  'middleware' => ['auth','activated']], function()
 {
-    Route::get('/list', 'AdminController@list')->name('admin.list');   
-    Route::get('/activate/{id}', 'AdminController@activate')->name('admin.activate');    
-    Route::get('/revoke/{id}', 'AdminController@revoke')->name('admin.revoke');
+    Route::get('/edit/{id}', 'AdminController@editForm')->name('admin.edit.form');   
+    Route::post('/edit/store', 'AdminController@editStore')->name('admin.edit.store');           
+  
+    Route::group(['middleware' => ['auth','activated','superadmin']], function()
+    {
+        Route::get('/list', 'AdminController@list')->name('admin.list');   
+        Route::get('/activate/{id}', 'AdminController@activate')->name('admin.activate');    
+        Route::get('/revoke/{id}', 'AdminController@revoke')->name('admin.revoke');
+    });
 });
 
 Route::group(['prefix' => 'player' , 'middleware' => ['auth','activated']], function()
 {
-    
-
     
     Route::get('/list', 'PlayerController@list')->name('player.list');     
     Route::get('/activate/{id}', 'PlayerController@activate')->name('player.activate');    

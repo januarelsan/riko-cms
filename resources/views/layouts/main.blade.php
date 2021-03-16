@@ -99,7 +99,7 @@
                                                 <h4>{{ Auth::user()->name }}</h4>
                                                 <p class="text-muted">-</p>
                                                 @if (Auth::user()->isActivated())
-                                                    <a href="#" class="btn btn-rounded btn-success">View Profile</a>
+                                                    <a href="{{ route('admin.edit.form', Auth::user()->id) }}" class="btn btn-rounded btn-success">View Profile</a>
                                                 @else
                                                     <i class="btn-rounded btn-danger">Inactive</i>
                                                 @endif
