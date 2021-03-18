@@ -21,7 +21,8 @@
                 <h4 class="card-title">Quiz Data</h4>
                 {{-- <h6 class="card-subtitle">-----</h6> --}}
                 <div class="table-responsive m-t-40">
-                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                    <a href="{{ route('quiz.export') }}" type="button" class="btn waves-effect waves-light btn-info">Export Quiz Data</a>
+                    <table id="quizTable" class="table table-bordered table-striped" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -35,6 +36,7 @@
                                 
                             </tr>
                         </thead>
+                        
                         
                         <tbody>
                             @foreach ($quizzes as $quiz)    
@@ -92,30 +94,10 @@
 
 <!-- This is data table -->
 <script src="{{asset ('material/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<!-- start - This is for export functionality only -->
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-<!-- end - This is for export functionality only -->
-<script>
 
-$('#example23').DataTable({
-    dom: 'Bfrtip',
-    buttons: [
-        
-        {
-            extend: 'excelHtml5',
-            text: 'Export Data to Excel',
-            exportOptions: {
-                columns: [ 0,1,2,3,4,5,6 ]
-            }
-        },
-            
-    ]
+<script>
+$(document).ready(function() {
+    $('#quizTable').DataTable();
     
 });
 

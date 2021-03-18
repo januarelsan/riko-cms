@@ -10,11 +10,17 @@ use App\PlayerActivity;
 use App\PlayerQuizAnswer;
 
 use App\Imports\QuizImport;
+use App\Exports\QuizExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class QuizController extends Controller
 {
     //
+
+    public function export() 
+    {
+        return Excel::download(new QuizExport, 'Quiz.xlsx');
+    }
     
     public function list(){        
         $quizzes = Quiz::where('removed', '=', 0)->get();                
