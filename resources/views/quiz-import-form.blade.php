@@ -23,7 +23,7 @@
                 {{ csrf_field() }}
                     <div class="form-group">                        
                         <h4 class="card-title">File Upload1</h4>                        
-                        <input type="file" name="file" id="input-file-now" class="dropify" />
+                        <input required type="file" name="file" id="input-file-now" class="dropify" />
                     </div>                    
                     <button class="btn btn-success">Import Quiz Data</button>
                 </form>
