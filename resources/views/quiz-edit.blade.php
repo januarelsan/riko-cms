@@ -35,19 +35,19 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Option 1</label>
-                                <input required type="text" class="form-control" name="option_0" value="{{ isset($options[0]->value) }}">
+                                <input required type="text" class="form-control" name="option_0" value="{{ isset($options[0]->value) ? $options[0]->value : null }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Option 2</label>
-                                <input required type="text" class="form-control" name="option_1" value=" {{ isset($options[1]->value) }} ">
+                                <input required type="text" class="form-control" name="option_1" value="{{ isset($options[1]->value) ? $options[1]->value : null }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Option 3</label>
-                                <input required type="text" class="form-control" name="option_2" value="{{ isset($options[2]->value) }}">
+                                <input required type="text" class="form-control" name="option_2" value="{{ isset($options[2]->value) ? $options[2]->value : null }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Option 4</label>
-                                <input required type="text" class="form-control" name="option_3" value="{{ isset($options[3]->value) }}">
+                                <input required type="text" class="form-control" name="option_3" value="{{ isset($options[3]->value) ? $options[3]->value : null }}">
                             </div>
                             <div class="form-group">
                                 <label>Correct Option</label>
@@ -80,11 +80,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Option 1</label>
-                                <input required type="text" class="form-control" name="option_0" value="{{ isset($options[0]->value) }}">
+                                <input required type="text" class="form-control" name="option_0" value="{{ isset($options[0]->value) ? $options[0]->value : null }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Option 2</label>
-                                <input required type="text" class="form-control" name="option_1" value=" {{ isset($options[1]->value) }} ">
+                                <input required type="text" class="form-control" name="option_1" value="{{ isset($options[1]->value) ? $options[1]->value : null }}">
                             </div>
                             
                             <div class="form-group">
