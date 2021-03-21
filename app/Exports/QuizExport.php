@@ -19,8 +19,6 @@ class QuizExport implements FromQuery, WithMapping, WithHeadings, WithColumnWidt
 {
     use Exportable;
 
-    
-
     public function query()
     {
         return Quiz::query();
@@ -50,7 +48,7 @@ class QuizExport implements FromQuery, WithMapping, WithHeadings, WithColumnWidt
             }
         }
         return [
-            $quiz->id,            
+            $quiz->code,            
             $quiz->question,   
             $options[0],
             $options[1], 
@@ -76,7 +74,7 @@ class QuizExport implements FromQuery, WithMapping, WithHeadings, WithColumnWidt
     public function headings(): array
     {
         return [
-            'Id',
+            'Code',
             'Question',
             'Option A',
             'Option B',
@@ -93,7 +91,7 @@ class QuizExport implements FromQuery, WithMapping, WithHeadings, WithColumnWidt
 
         $sheet->freezePane("A2");
 
-        $format = 'B2:G' . ($sheet->getHighestRow()+1000);
+        $format = 'A2:G' . ($sheet->getHighestRow()+200);
         $sheet->getStyle($format)->getProtection()->setLocked(Protection::PROTECTION_UNPROTECTED);        
         
     }

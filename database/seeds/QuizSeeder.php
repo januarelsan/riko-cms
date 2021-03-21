@@ -13,9 +13,10 @@ class QuizSeeder extends Seeder
     {
         //
         $faker = Faker\Factory::create();    
-        for ($i=0; $i < 25; $i++) { 
+        for ($i=0; $i < 1; $i++) { 
             # code...
             DB::table('quizzes')->insert([            
+                'code' => $i+1,    
                 'question' => $faker->realText($maxNbChars = 50, $indexSize = 2),    
             ]);
 

@@ -14,15 +14,42 @@
 
 @section('content')
 
+
+<!-- <div class="row">
+
+    <div class="col-md-6">
+       
+        <div class="card">
+            <div class="card-body">                
+                <h4 class="card-title">File Template</h4>                                               
+                <button class="btn btn-success">Download</button>
+                
+            </div>
+            
+        </div>
+    </div>    
+    
+</div> -->
+
 <div class="row">
 
     <div class="col-md-6">
+        @if ($errors->any())        
+            @foreach ($errors->all() as $error)                
+                <div class="alert alert-danger"></i> 
+                    {{ $error }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                </div>
+            @endforeach
+
+            
+        @endif
         <div class="card">
             <div class="card-body">                
                 <form action="{{ route('quiz.import.store') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                     <div class="form-group">                        
-                        <h4 class="card-title">File Upload1</h4>                        
+                        <h4 class="card-title">File Upload</h4>                        
                         <input required type="file" name="file" id="input-file-now" class="dropify" />
                     </div>                    
                     <button class="btn btn-success">Import Quiz Data</button>
@@ -37,6 +64,27 @@
 
 @section('scripts')
 
+<script src="{{asset ('material/plugins/toast-master/js/jquery.toast.js')}}"></script>
+<script src="{{asset ('material/js/toastr.js')}}"></script>
+
+@if(Session::has('message'))
+    <script>    
+    $(function() {        
+        $("document").ready(function(){
+            $.toast({                
+                text: 'File Imported',
+                position: 'top-right',
+                loaderBg:'#ff6849',
+                icon: 'success',
+                hideAfter: 4000, 
+                stack: 6
+            });
+
+        });
+        
+    });            
+    </script>
+@endif
 
 <script>
 $(document).ready(function() {

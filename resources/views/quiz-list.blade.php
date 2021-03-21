@@ -20,18 +20,20 @@
             <div class="card-body">
                 <h4 class="card-title">Quiz Data</h4>
                 {{-- <h6 class="card-subtitle">-----</h6> --}}
+                <a href="{{ route('quiz.export') }}" type="button" class="btn waves-effect waves-light btn-info">Export Quiz Data</a>
                 <div class="table-responsive m-t-40">
-                    <a href="{{ route('quiz.export') }}" type="button" class="btn waves-effect waves-light btn-info">Export Quiz Data</a>
                     <table id="quizTable" class="table table-bordered table-striped" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th>Id</th>
+                                <th style="width: 111px;">Code</th>
                                 <th>Question</th>
+                                <th>Answer</th>
                                 <th hidden>Option 1</th>
                                 <th hidden>Option 2</th>
                                 <th hidden>Option 3</th>
                                 <th hidden>Option 4</th>
                                 <th hidden>Correct Option</th>
+                                <th style="width: 150px;">Status</th>
                                 <th >Action</th>
                                 
                             </tr>
@@ -44,8 +46,14 @@
                                 $correct_option = 2;
                             @endphp
                             <tr>
-                                <td>{{$quiz->id}}</td>
-                                <td>{{ \Illuminate\Support\Str::limit($quiz->question, 100, $end=' ...') }} </td>                                                                                                                          
+                                <td>{{$quiz->code}}</td>
+                                <td>{{ \Illuminate\Support\Str::limit($quiz->question, 100, $end=' ...') }} </td>       
+                                @foreach ($quiz->options as $option)                                    
+                                    @if($option->correct_option == 1)
+                                    <td>{{ \Illuminate\Support\Str::limit($option->value, 100, $end=' ...') }} </td>
+                                    @endif
+                                @endforeach
+
                                 @for ($i = 0; $i < 4; $i++)                                    
                                     @if ($i < count($quiz->options))
                                         <td hidden>{{$quiz->options[$i]->value}}</td>                                                                              
@@ -74,10 +82,19 @@
                                     @default
                                         <td hidden>A</td>                            
                                         @break
-                                @endswitch                                
+                                @endswitch      
+                                @if ($quiz->isRemoved())                                        
+                                    <td><p class="text-danger"><b>Inactive</b></p></td>                                    
+                                @else
+                                    <td><p class="text-primary"><b>Activated</b></p></td>                                    
+                                @endif                          
                                 <td>                                    
-                                    <a href="{{route('quiz.edit.form',$quiz->id)}}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                    <a href="{{route('quiz.remove',$quiz->id)}}" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash-o text-danger m-r-10"></i> </a>
+                                    @if ($quiz->isRemoved())                                        
+                                        <a href="{{route('quiz.activate',$quiz->id)}}"><button type="button" class="btn waves-effect waves-light btn-xs btn-success">Activate</button></a>
+                                    @else
+                                        <a href="{{route('quiz.edit.form',$quiz->id)}}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>                                    
+                                        <a href="{{route('quiz.remove',$quiz->id)}}"><button type="button" class="btn waves-effect waves-light btn-xs btn-danger">Deactivate</button></a>                                        
+                                    @endif                          
                                 </td>                              
                             </tr>                            
                             @endforeach
@@ -111,7 +128,7 @@ $(document).ready(function() {
     $(function() {        
         $("document").ready(function(){
             $.toast({                
-                text: 'Question Removed',
+                text: 'Question Deactivated',
                 position: 'top-right',
                 loaderBg:'#ff6849',
                 icon: 'success',

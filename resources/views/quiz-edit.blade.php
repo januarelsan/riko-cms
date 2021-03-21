@@ -35,19 +35,19 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Option 1</label>
-                                <input required type="text" class="form-control" name="option_0" value="{{$options[0]->value}}">
+                                <input required type="text" class="form-control" name="option_0" value="{{ isset($options[0]->value) }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Option 2</label>
-                                <input required type="text" class="form-control" name="option_1" value="{{$options[1]->value}}">
+                                <input required type="text" class="form-control" name="option_1" value=" {{ isset($options[1]->value) }} ">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Option 3</label>
-                                <input required type="text" class="form-control" name="option_2" value="{{$options[2]->value}}">
+                                <input required type="text" class="form-control" name="option_2" value="{{ isset($options[2]->value) }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Option 4</label>
-                                <input required type="text" class="form-control" name="option_3" value="{{$options[3]->value}}">
+                                <input required type="text" class="form-control" name="option_3" value="{{ isset($options[3]->value) }}">
                             </div>
                             <div class="form-group">
                                 <label>Correct Option</label>
@@ -58,7 +58,7 @@
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Edit</button>
-                            
+                            <a type="button" href="{{ route('quiz.list') }}" class="btn btn-inverse">Cancel</a>
                         </form>
                     </div>
                 </div>
@@ -80,11 +80,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Option 1</label>
-                                <input required type="text" class="form-control" name="option_0" value="{{$options[0]->value}}">
+                                <input required type="text" class="form-control" name="option_0" value="{{ isset($options[0]->value) }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Option 2</label>
-                                <input required type="text" class="form-control" name="option_1" value="{{$options[1]->value}}">
+                                <input required type="text" class="form-control" name="option_1" value=" {{ isset($options[1]->value) }} ">
                             </div>
                             
                             <div class="form-group">
@@ -97,7 +97,7 @@
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Edit</button>
-                            
+                            <a type="button" href="{{ route('quiz.list') }}" class="btn btn-inverse">Cancel</a>
                         </form>
                     </div>
                 </div>

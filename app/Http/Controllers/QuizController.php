@@ -23,7 +23,7 @@ class QuizController extends Controller
     }
     
     public function list(){        
-        $quizzes = Quiz::where('removed', '=', 0)->get();                
+        $quizzes = Quiz::all();                
         return view('quiz-list', compact('quizzes'));
     }
 
@@ -65,11 +65,12 @@ class QuizController extends Controller
     }
 
     public function store(Request $request){        
-        
+        $highestCode = Quiz::max('code');
         $reqArray = $request->all();       
         $keys = array_keys($reqArray);
 
         $data = [
+            'code' => $highestCode + 1,
             'question' => $request->question,            
         ];
 
@@ -101,6 +102,16 @@ class QuizController extends Controller
         return redirect()->back()->with('message','message');   
     }
 
+    public function activate($id){        
+        
+        $quiz = Quiz::find($id);       
+        $quiz->removed = 0;
+        
+        $quiz->save();        
+              
+        return redirect()->back();
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
@@ -111,9 +122,14 @@ class QuizController extends Controller
 
     
     public function import() 
-    {
-        Excel::import(new QuizImport,request()->file('file'));
-           
-        return back();
+    {        
+        
+        $validated = request()->validate([
+            'file' => ['required', 'mimes:xlsx']      
+            
+        ]);
+                                        
+        Excel::import(new QuizImport,request()->file('file'));                   
+        return redirect()->back()->with('message','message');  
     }
 }
