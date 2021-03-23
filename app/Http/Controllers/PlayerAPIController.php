@@ -4,22 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Player;
+use App\PlayerActivity;
 
 class PlayerAPIController extends Controller
 {
     public function auth(Request $request){
                 
-        $player = Player::firstOrNew(['email'=> $request->email]); 
+        $player = Player::firstOrNew(['firebase_uuid'=> $request->firebase_uuid]);         
         $player->firebase_uuid = $request->firebase_uuid;
         $player->name = $request->name;
         $player->email = $request->email;
         $player->save();
+
+        // Create Player Activity - Start
+        $data = [
+            'player_firebase_uuid' => $request->firebase_uuid,            
+            'activity_id' => 1,            
+        ];
+
+        $playerActivity = PlayerActivity::create($data);        
+        //Create Player Activity - End
         
-        return $player->email . " Auth Succeed"; 
+        return $player->firebase_uuid . " Auth Succeed"; 
     }
     
-    public function checkActivated($email){        
-        $player = Player::where('email',$email)->first();             
+    public function checkActivated($firebase_uuid){        
+        $player = Player::find($firebase_uuid);             
         return $player->activated;        
     }
 

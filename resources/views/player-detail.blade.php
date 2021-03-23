@@ -13,8 +13,7 @@
 @endsection
 
 @section('content')
-@if(Session::has('message'))
-@endif
+
 <div class="row">    
     <div class="col-md-6">
         <div class="card card-body">
@@ -40,8 +39,47 @@
                 </div>
             </div>
         </div>
-    </div>        
+
+    </div>  
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Player Activities</h4>
+                <p class="text-muted m-b-30 font-13">Table</p>   
+                <div class="table-responsive m-t-40">
+                    <table id="playerActivityTable" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Activity</th>
+                                <th>Date</th>                                
+                                <th>Action</th>       
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($player->player_activities as $player_activity)                                
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{$player_activity->activity->title}}</td>
+                                    <td>{{ Carbon\Carbon::parse($player_activity->created_at)->format('d/m/Y')}}</td>                                                                                                       
+                                    <td><a href="#" data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i></a></td>                                
+                                </tr>
+                            @endforeach   
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>        
 </div>
+
+
+      
+
 @endsection
 
 @section('scripts')
@@ -67,5 +105,12 @@
     });            
     </script>
 @endif
+
+<script>
+    $(document).ready(function() {
+        $('#playerActivityTable').DataTable();
+        
+    });
+</script>
 
 @endsection

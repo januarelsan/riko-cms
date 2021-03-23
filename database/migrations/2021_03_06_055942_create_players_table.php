@@ -14,13 +14,14 @@ class CreatePlayersTable extends Migration
     public function up()
     {
         Schema::create('players', function (Blueprint $table) {
-            $table->id();
-            $table->string('firebase_uuid')->unique()->nullable();            
+            $table->string('firebase_uuid')->unique();
             $table->string('name')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();            
             $table->boolean('activated')->default(1);
-            $table->rememberToken();            
+            $table->rememberToken();         
+               
+            $table->primary('firebase_uuid');
         });
     }
 

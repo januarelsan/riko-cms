@@ -15,9 +15,11 @@ class CreatePlayerActivitiesTable extends Migration
     {
         Schema::create('player_activities', function (Blueprint $table) {
             $table->id();            
-            $table->string('player_uuid');
+            $table->string('player_firebase_uuid');            
             $table->foreignId('activity_id')->constrained('activities');            
             $table->timestamps();
+
+            $table->foreign('player_firebase_uuid')->references('firebase_uuid')->on('players')->onDelete('cascade');
         });
     }
 

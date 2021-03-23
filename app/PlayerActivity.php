@@ -12,7 +12,7 @@ class PlayerActivity extends Model
      * @var array
      */
     protected $fillable = [
-        'player_uuid', 'activity_id', 'created_at',
+        'player_firebase_uuid', 'activity_id', 'created_at',
     ];
 
     public $timestamps = true;

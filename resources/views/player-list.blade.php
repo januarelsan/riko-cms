@@ -47,12 +47,12 @@
                                     
                                     <td><p class="text-primary"><b>Activated</b></p></td>
                                     <td>
-                                        <a href="{{route('player.detail',$player->id)}}" data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
-                                        <a href="{{route('player.deactivate',$player->id)}}"><button type="button" class="btn waves-effect waves-light btn-xs btn-danger">Deactivate</button></a>
+                                        <a href="{{route('player.detail',$player->firebase_uuid)}}" data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
+                                        <a href="{{route('player.deactivate',$player->firebase_uuid)}}"><button type="button" class="btn waves-effect waves-light btn-xs btn-danger">Deactivate</button></a>
                                     </td>                                    
                                     @else
                                     <td><p class="text-danger"><b>Inactive</b></p></td>
-                                    <td><a href="{{route('player.activate',$player->id)}}"><button type="button" class="btn waves-effect waves-light btn-xs btn-info">Activate</button></a></td>                                    
+                                    <td><a href="{{route('player.activate',$player->firebase_uuid)}}"><button type="button" class="btn waves-effect waves-light btn-xs btn-info">Activate</button></a></td>                                    
                                     @endif
                                 </tr>
                             @endforeach                            
