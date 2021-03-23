@@ -42,9 +42,14 @@
                                     <td>{{$player->email}}</td>                              
                                     <td>{{$player->firebase_uuid}}</td>      
                                     
+                                    
                                     @if ($player->isActivated())                                        
+                                    
                                     <td><p class="text-primary"><b>Activated</b></p></td>
-                                    <td><a href="{{route('player.deactivate',$player->id)}}"><button type="button" class="btn waves-effect waves-light btn-xs btn-danger">Deactivate</button></a></td>                                    
+                                    <td>
+                                        <a href="{{route('player.detail',$player->id)}}" data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
+                                        <a href="{{route('player.deactivate',$player->id)}}"><button type="button" class="btn waves-effect waves-light btn-xs btn-danger">Deactivate</button></a>
+                                    </td>                                    
                                     @else
                                     <td><p class="text-danger"><b>Inactive</b></p></td>
                                     <td><a href="{{route('player.activate',$player->id)}}"><button type="button" class="btn waves-effect waves-light btn-xs btn-info">Activate</button></a></td>                                    

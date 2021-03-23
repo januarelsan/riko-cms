@@ -8,6 +8,13 @@ use App\Player;
 class PlayerController extends Controller
 {
     //
+    public function detail($id){        
+        
+
+        $player = Player::find($id);        
+        return view('player-detail', compact('player'));
+    }
+
     public function list(){        
         $players = Player::all();        
         return view('player-list', compact('players'));
