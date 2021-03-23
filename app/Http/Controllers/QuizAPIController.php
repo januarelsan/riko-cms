@@ -14,10 +14,10 @@ class QuizAPIController extends Controller
     //
     public function answer(Request $request){        
         
-        //Create Player Activity - Start
+        // Create Player Activity - Start
         $data = [
-            'player_uuid' => $request->player_uuid,            
-            'activity_id' => 1,            
+            'player_firebase_uuid' => $request->firebase_uuid,            
+            'activity_id' => 2,            
         ];
 
         $playerActivity = PlayerActivity::create($data);        
