@@ -22,4 +22,9 @@ class Option extends Model
     {
         return $this->belongsTo(Quiz::class);
     }
+
+    public function player_quiz_answers()
+    {
+        return $this->hasMany(PlayerQuizAnswer::class);
+    }
 }

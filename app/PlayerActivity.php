@@ -26,4 +26,13 @@ class PlayerActivity extends Model
     {
         return $this->belongsTo(Activity::class);
     }
+
+    public function player_quiz_answer()
+    {
+        return $this->hasOne(PlayerQuizAnswer::class);
+    }
+
+    
+
+    
 }

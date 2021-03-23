@@ -63,6 +63,12 @@ Route::group(['prefix' => 'quiz' , 'middleware' => ['auth','activated']],  funct
 
 });
 
+Route::group(['prefix' => 'playerQuizAnswer' ],  function()
+{    
+    Route::get('/show/{player_activity_id}', 'PlayerQuizAnswerController@show')->name('playerQuizAnswer.show');       
+    
+});
+
 
 Route::get('token/', function() {
     return csrf_token();

@@ -62,8 +62,16 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{$player_activity->activity->title}}</td>
-                                    <td>{{ Carbon\Carbon::parse($player_activity->created_at)->format('d/m/Y')}}</td>                                                                                                       
-                                    <td><a href="#" data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i></a></td>                                
+                                    <td>{{ Carbon\Carbon::parse($player_activity->created_at)->format('d/m/Y')}}</td>   
+
+                                    @switch($player_activity->activity->id)
+                                        @case(2)
+                                            <td><a href="{{ route('playerQuizAnswer.show',$player_activity->id)}}" data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i></a></td>                                
+                                            @break     
+                                        @default
+                                            <td></td>
+                                    @endswitch                                                                                                    
+                                    
                                 </tr>
                             @endforeach   
                             

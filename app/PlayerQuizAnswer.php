@@ -17,7 +17,7 @@ class PlayerQuizAnswer extends Model
 
     public $timestamps = false;
     
-    public function playerActivity()
+    public function player_activity()
     {
         return $this->belongsTo(PlayerActivity::class);
     }
