@@ -29,5 +29,8 @@ Route::group(['prefix' => 'player'], function()
 {
     Route::get('/list', 'PlayerAPIController@list')->name('player.list');      
     Route::post('/auth', 'PlayerAPIController@auth')->name('player.auth');      
-    Route::get('/checkActivated/{firebase_uuid}', 'PlayerAPIController@checkActivated')->name('player.checkActivated');      
+    Route::get('/checkActivated/{firebase_uuid}', 'PlayerAPIController@checkActivated')->name('player.checkActivated');  
+        
+    Route::post('/finishMission/store', 'PlayerFinishMissionAPIController@store')->name('player.finishMission.store');        
+
 });
