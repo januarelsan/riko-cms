@@ -40,7 +40,7 @@ class QuizAPIController extends Controller
     }
 
     public function listAPITwo(){            
-        $quizzes = Quiz::has('options', '=', 2)->where('removed', '=', 0)->inRandomOrder()->limit(5)->with('options')->get(['id','question']);                                
+        $quizzes = Quiz::has('options', '=', 2)->where('removed', '=', 0)->inRandomOrder()->limit(30)->with('options')->get(['id','question']);                                
         return $quizzes;
     }
 }
