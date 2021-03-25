@@ -39,11 +39,47 @@ class PlayerAPIController extends Controller
     }
 
     public function leaderboard(){        
-        $players = Player::all();
+        $players = Player::with('player_activities.player_finish_mission')->get();
         
         $players = $players->sortByDesc(function ($player) {
                     return $player->player_activities->sum('player_finish_mission.scores');
                 });
-        return $players;
+
+        
+        $chunk = $players->values()->take(10);
+        return $chunk;
+        // return $players->values()->all();
+        
+        
     }
+
+    public function scores($firebase_uuid){        
+        $player = Player::find($firebase_uuid);      
+        
+        $totalScore = 0;
+
+        $playerActivities = PlayerActivity::where([
+            ['player_firebase_uuid', '=' , $firebase_uuid],
+            ['activity_id', '>=', 3],
+            ['activity_id', '<=', 27],            
+        ])->get();
+
+        foreach ($playerActivities as $playerActivity) {
+            $totalScore += $playerActivity->player_finish_mission->scores;    
+        }
+
+        return $totalScore;
+        
+    }
+
+    // public function leaderboard(){        
+    //     $players = Player::all();
+        
+    //     $players = $players->sortByDesc(function ($player) {
+    //                 return $player->player_activities->sum('player_finish_mission.scores');
+    //             });
+    //     return $players;
+    // }
+
+    
 }

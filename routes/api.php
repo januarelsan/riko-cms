@@ -27,6 +27,7 @@ Route::group(['prefix' => 'quiz'], function()
 
 Route::group(['prefix' => 'player'], function()
 {
+    Route::get('/scores/{firebase_uuid}', 'PlayerAPIController@scores')->name('player.scores');      
     Route::get('/leaderboard', 'PlayerAPIController@leaderboard')->name('player.leaderboard');      
     Route::get('/list', 'PlayerAPIController@list')->name('player.list');      
     Route::post('/auth', 'PlayerAPIController@auth')->name('player.auth');      
