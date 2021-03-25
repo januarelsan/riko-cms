@@ -37,4 +37,13 @@ class PlayerAPIController extends Controller
         $players = Player::limit(10)->get(['email']);
         return $players;        
     }
+
+    public function leaderboard(){        
+        $players = Player::all();
+        
+        $players = $players->sortByDesc(function ($player) {
+                    return $player->player_activities->sum('player_finish_mission.scores');
+                });
+        return $players;
+    }
 }

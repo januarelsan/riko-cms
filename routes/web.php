@@ -39,6 +39,7 @@ Route::group(['prefix' => 'player' , 'middleware' => ['auth','activated']], func
 {
     
     Route::get('/list', 'PlayerController@list')->name('player.list');     
+    Route::get('/leaderboard', 'PlayerController@leaderboard')->name('player.leaderboard');     
     Route::get('/detail/{firebase_uuid}', 'PlayerController@detail')->name('player.detail');    
     Route::get('/activate/{firebase_uuid}', 'PlayerController@activate')->name('player.activate');    
     Route::get('/deactivate/{firebase_uuid}', 'PlayerController@deactivate')->name('player.deactivate');              

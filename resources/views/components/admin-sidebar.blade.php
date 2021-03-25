@@ -8,6 +8,7 @@
             <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Player</span></a>
             <ul aria-expanded="false" class="collapse">                
                 <li><a href="{{route('player.list')}}">List</a></li>
+                <li><a href="{{route('player.leaderboard')}}">Leaderboard</a></li>
             </ul>
         </li>  
         <li>

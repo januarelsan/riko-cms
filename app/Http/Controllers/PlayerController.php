@@ -15,12 +15,14 @@ class PlayerController extends Controller
         
         $totalScore = 0;
 
-        $playerActivities = PlayerActivity::where('player_firebase_uuid', '=' , $firebase_uuid)->get();
+        $playerActivities = PlayerActivity::where([
+            ['player_firebase_uuid', '=' , $firebase_uuid],
+            ['activity_id', '>=', 3],
+            ['activity_id', '<=', 27],            
+        ])->get();
 
-        for ($i=0; $i < count($playerActivities); $i++) { 
-            if($playerActivities[$i]->activity->id >= 3 && $playerActivities[$i]->activity->id <= 27){
-                $totalScore += $playerActivities[$i]->player_finish_mission->scores;
-            }
+        foreach ($playerActivities as $playerActivity) {
+            $totalScore += $playerActivity->player_finish_mission->scores;    
         }
 
         return view('player-detail', compact('player', 'totalScore'));
@@ -30,6 +32,17 @@ class PlayerController extends Controller
     public function list(){        
         $players = Player::all();        
         return view('player-list', compact('players'));
+    }
+
+    public function leaderboard(){        
+        $players = Player::all();
+        
+        $players = $players->sortByDesc(function ($player) {
+                    return $player->player_activities->sum('player_finish_mission.scores');
+                });
+        
+        // return $players;
+        return view('player-leaderboard', compact('players'));
     }
 
     public function activate($firebase_uuid){
