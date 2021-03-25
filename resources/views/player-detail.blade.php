@@ -35,6 +35,11 @@
                         <label for="exampleInputEmail1">Email</label>
                         <input disabled class="form-control" rows="3" placeholder="{{$player->email}}" value="{{$player->email}}">
                     </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Total Score</label>
+                        <input disabled class="form-control" rows="3" value="{{$totalScore}}">
+                    </div>
                     
                 </div>
             </div>
@@ -63,14 +68,18 @@
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{$player_activity->activity->title}}</td>
                                     <td>{{ Carbon\Carbon::parse($player_activity->created_at)->format('d/m/Y')}}</td>   
+                                    @if($player_activity->activity->id < 3 && $player_activity->activity->id > 27)
+                                        @switch($player_activity->activity->id)
+                                            @case(2)
+                                                <td><a href="{{ route('playerQuizAnswer.show',$player_activity->id)}}" data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i></a></td>                                
+                                                @break                                            
+                                            @default
+                                                <td></td>
+                                        @endswitch
+                                    @else
+                                    <td><a href="{{ route('player.finishMission.show',$player_activity->id)}}" data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i></a></td>                                
 
-                                    @switch($player_activity->activity->id)
-                                        @case(2)
-                                            <td><a href="{{ route('playerQuizAnswer.show',$player_activity->id)}}" data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i></a></td>                                
-                                            @break     
-                                        @default
-                                            <td></td>
-                                    @endswitch                                                                                                    
+                                    @endif
                                     
                                 </tr>
                             @endforeach   

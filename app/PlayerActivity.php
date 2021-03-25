@@ -32,6 +32,11 @@ class PlayerActivity extends Model
         return $this->hasOne(PlayerQuizAnswer::class);
     }
 
+    public function player_finish_mission()
+    {
+        return $this->hasOne(PlayerFinishMission::class);
+    }
+
     
 
     

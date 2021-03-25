@@ -5,13 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Player;
 use App\PlayerActivity;
+use App\PlayerFinishMission;
 
 class PlayerController extends Controller
 {
     //
     public function detail($firebase_uuid){        
-        $player = Player::find($firebase_uuid);        
-        return view('player-detail', compact('player'));
+        $player = Player::find($firebase_uuid);      
+        
+        $totalScore = 0;
+
+        $playerActivities = PlayerActivity::where('player_firebase_uuid', '=' , $firebase_uuid)->get();
+
+        for ($i=0; $i < count($playerActivities); $i++) { 
+            if($playerActivities[$i]->activity->id >= 3 && $playerActivities[$i]->activity->id <= 27){
+                $totalScore += $playerActivities[$i]->player_finish_mission->scores;
+            }
+        }
+
+        return view('player-detail', compact('player', 'totalScore'));
         
     }
 
