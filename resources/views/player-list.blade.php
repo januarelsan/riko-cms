@@ -79,12 +79,26 @@
 <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
 <!-- end - This is for export functionality only -->
 <script>
-$(document).ready(function() {
-    $('#example23').DataTable({        
-        "ordering": false  
-    });
-    
+
+$('#example23').DataTable({
+    dom: 'Bfrtip',
+    "ordering": false  ,
+    buttons: [
+        
+        {
+            extend: 'excelHtml5',
+            text: 'Export Data to Excel',
+            exportOptions: {
+                columns: [ 0,1,2 ]
+            }
+        },
+            
+    ]
 });
+
+
+
+
 
 </script>
 @endsection
