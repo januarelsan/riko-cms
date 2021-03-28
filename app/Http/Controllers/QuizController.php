@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 use App\Quiz;
 use App\Option;
 use App\Activity;
@@ -33,8 +34,13 @@ class QuizController extends Controller
 
     public function editForm($id){        
         $quiz = Quiz::find($id);
-        $options = Option::where('quiz_id', '=', $id)->get();        
-        return view('quiz-edit', compact('quiz','options'));
+        $options = Option::where('quiz_id', '=', $id)->get();   
+
+        $playerQuizAnswers = PlayerQuizAnswer::whereHas('option', function (Builder $query) use ($id) {
+            $query->where('quiz_id', $id);
+        })->get();
+
+        return view('quiz-edit', compact('quiz','options','playerQuizAnswers'));
     }
 
     public function editStore(Request $request){        

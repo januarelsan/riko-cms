@@ -103,15 +103,145 @@
                 </div>
             </div>
         </div>
-    @endif
+    @endif 
+</div>
+
+<div class="row">
+
+    @php                                
+        $total_correct = 0;
+        $correct_percentage = 0;
+        $wrong_percentage = 0;
+    @endphp
+    
+    @foreach ($playerQuizAnswers as $playerQuizAnswer)                                
+        @php                                
+            $correct_option_id = 0;
+        @endphp                         
+
+        @foreach ($playerQuizAnswer->option->quiz->options as $option)  
+            @if ($option->correct_option == 1) 
+                @php  
+                    $correct_option_id = $option->id;
+                @endphp                    
+            @endif
+        @endforeach 
+
+        @if($correct_option_id == $playerQuizAnswer->option->id)
+            @php                                                        
+            $total_correct ++;            
+            @endphp
+        @endif
+                       
+    @endforeach
+
+    @php
+        if(count($playerQuizAnswers) > 0){
+            $correct_percentage = ($total_correct / count($playerQuizAnswers)) * 100;
+            $wrong_percentage = 100 - $correct_percentage;
+        }
+
+    @endphp
     
 
+    <!-- Column -->
+    <div class="col-md-6 col-lg-3">
+        <div class="card card-body">
+            <!-- Row -->
+            <div class="row">
+                <!-- Column -->
+                <div class="col p-r-0 align-self-center">
+                    <h2 class="font-light m-b-0">{!! $total_correct !!}</h2>
+                    <h6 class="text-muted">Correct Answers</h6>
+                </div>
+                <!-- Column -->
+                <div class="col text-right align-self-center">
+                    <div>
+                        <h2 class="font-light m-b-0 text-success">{{round($correct_percentage)}}%</h2>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <div class="col-md-6 col-lg-3">
+        <div class="card card-body">
+            <!-- Row -->
+            <div class="row">
+                <!-- Column -->
+                <div class="col p-r-0 align-self-center">
+                    <h2 class="font-light m-b-0">{{ count($playerQuizAnswers) - $total_correct }} </h2>
+                    <h6 class="text-muted">Wrong Answers</h6></div>
+                <!-- Column -->
+                <div class="col text-right align-self-center">
+                    <div>
+                        <h2 class="font-light m-b-0 text-danger">{{round($wrong_percentage)}}%</h2>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
-    
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Player Answer Data</h4>    
+                
+                <div class="table-responsive m-t-40">
+                    <table id="playerQuizAnswerTable" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>                                
+                                <th>Player Email</th>                                                                
+                                <th>Player Answer</th>
+                                <th>Correct Answer</th>
+                                <th>Status</th>                                                                
+                            </tr>
+                        </thead>                        
+                        
+                        <tbody>
+                            @foreach ($playerQuizAnswers as $playerQuizAnswer)                                
+                            @php                                
+                                $correct_option_id = 0;
+                            @endphp
+                            <tr>
+                                <td>{{$playerQuizAnswer->player_activity->player->email}}</td>   
+                                <td>{{$playerQuizAnswer->option->value}}</td>     
+                                @foreach ($playerQuizAnswer->option->quiz->options as $option)  
+                                    @if ($option->correct_option == 1) 
+                                        @php  
+                                            $correct_option_id = $option->id;
+                                        @endphp
+                                        <td>{{$option->value}}</td>                                             
+                                    @endif
+                                @endforeach 
+
+                                @if($correct_option_id == $playerQuizAnswer->option->id)
+                                    <td><p class="text-success"><b>Correct</b></p>
+                                @else
+                                    <td><p class="text-danger"><b>Wrong</b></p></td>
+                                @endif
+                                
+                            </tr>                            
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 
 @section('scripts')
+<script>  
+$(document).ready(function() {
+    $('#playerQuizAnswerTable').DataTable();
+    
+});
+</script>
     
 <script src="{{asset ('material/plugins/toast-master/js/jquery.toast.js')}}"></script>
 <script src="{{asset ('material/js/toastr.js')}}"></script>
