@@ -35,6 +35,8 @@ Route::group(['prefix' => 'admin',  'middleware' => ['auth','activated']], funct
     });
 });
 
+
+
 Route::group(['prefix' => 'player' , 'middleware' => ['auth','activated']], function()
 {
     
@@ -46,6 +48,13 @@ Route::group(['prefix' => 'player' , 'middleware' => ['auth','activated']], func
 
     Route::get('/finishMission/show/{player_activity_id}', 'PlayerFinishMissionController@show')->name('player.finishMission.show');              
     Route::get('/finishMission/leaderboard/', 'PlayerFinishMissionController@leaderboard')->name('player.finishMission.leaderboard');              
+    Route::get('/finishMission/list/{activity_id}', 'PlayerFinishMissionController@finishedPlayerList')->name('player.finishMission.list');              
+
+    Route::get('mission/list', function () {
+        return view('mission-list');
+    })->name('mission.list');     
+
+    Route::get('/mission/{activity_id}', 'PlayerFinishMissionController@finishedPlayerList')->name('player.finishMission.list');              
 
     
 });

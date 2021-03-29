@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 use App\PlayerFinishMission;
 use App\PlayerActivity;
 use App\Player;
+use App\Activity;
 
 class PlayerFinishMissionController extends Controller
 {
@@ -17,6 +19,20 @@ class PlayerFinishMissionController extends Controller
         
     }
 
+    public function finishedPlayerList($activity_id){        
+        
+        $players = Player::whereHas('player_activities.activity', function (Builder $query) use($activity_id) {
+            $query->where('id', '=', $activity_id);
+        })->get();
+
+        $activity = Activity::find($activity_id);
+
+        
+        // return $players;
+        return view('playerFinishMission-list', compact('players','activity'));
+        
+    }
+    
     public function leaderboard(){        
         $players = Player::all();
                 

@@ -29,6 +29,7 @@
         <li>
             <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-bookmark-check"></i><span class="hide-menu">Episode</span></a>
             <ul aria-expanded="false" class="collapse">                
+                <li><a href="{{route('mission.list')}}">Mission List</a></li>
                 <li><a href="{{route('player.finishMission.leaderboard')}}">Leaderboard</a></li>
             </ul>
             
