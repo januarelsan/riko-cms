@@ -191,12 +191,13 @@
                 <h4 class="card-title">Player Answer Data</h4>    
                 
                 <div class="table-responsive m-t-40">
-                    <table id="playerQuizAnswerTable" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                    <table id="playerQuizAnswerTable" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
-                            <tr>                                
-                                <th>Player Email</th>                                                                
-                                <th>Player Answer</th>
+                            <tr>
+                                <th>Question</th>                                
                                 <th>Correct Answer</th>
+                                <th>Player Answer</th>
+                                <th>Player Email</th>                                                                
                                 <th>Status</th>                                                                
                             </tr>
                         </thead>                        
@@ -206,9 +207,9 @@
                             @php                                
                                 $correct_option_id = 0;
                             @endphp
-                            <tr>
-                                <td>{{$playerQuizAnswer->player_activity->player->email}}</td>   
-                                <td>{{$playerQuizAnswer->option->value}}</td>     
+                            <tr>                                
+                                <td>{{$playerQuizAnswer->option->quiz->question}}</td>     
+                                
                                 @foreach ($playerQuizAnswer->option->quiz->options as $option)  
                                     @if ($option->correct_option == 1) 
                                         @php  
@@ -217,6 +218,10 @@
                                         <td>{{$option->value}}</td>                                             
                                     @endif
                                 @endforeach 
+
+                                <td>{{$playerQuizAnswer->option->value}}</td>     
+
+                                <td>{{$playerQuizAnswer->player_activity->player->email}}</td>   
 
                                 @if($correct_option_id == $playerQuizAnswer->option->id)
                                     <td><p class="text-success"><b>Correct</b></p>
@@ -236,10 +241,36 @@
 @endsection
 
 @section('scripts')
+
+<!-- This is data table -->
+<script src="{{asset ('material/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<!-- start - This is for export functionality only -->
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+<!-- end - This is for export functionality only -->
+
+
 <script>  
-$(document).ready(function() {
-    $('#playerQuizAnswerTable').DataTable();
-    
+
+$('#playerQuizAnswerTable').DataTable({
+    dom: 'Bfrtip',
+    "ordering": false  ,
+    buttons: [
+        
+        {
+            extend: 'excelHtml5',
+            text: 'Export Data to Excel',
+            exportOptions: {
+                columns: [ 0,1,2,3 ]
+            }
+        },
+            
+    ]
 });
 </script>
     
