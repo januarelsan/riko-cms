@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Quiz;
 use App\Option;
 use App\Activity;
+use App\Player;
 use App\PlayerActivity;
 use App\PlayerQuizAnswer;
 
@@ -17,6 +18,16 @@ use Maatwebsite\Excel\Facades\Excel;
 class QuizController extends Controller
 {
     //
+
+    public function leaderboard(){        
+        $players = Player::all();
+                
+        $players = $players->sortByDesc(function ($player) {
+                    return $player->player_activities->sum('player_quiz_answer.option.correct_option');
+                });
+                
+        return view('quiz-leaderboard', compact('players'));
+    }
 
     public function export() 
     {

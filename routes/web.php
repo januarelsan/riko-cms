@@ -52,6 +52,7 @@ Route::group(['prefix' => 'player' , 'middleware' => ['auth','activated']], func
 
 Route::group(['prefix' => 'quiz' , 'middleware' => ['auth','activated']],  function()
 {    
+    Route::get('/leaderboard', 'QuizController@leaderboard')->name('quiz.leaderboard');     
     Route::get('/list', 'QuizController@list')->name('quiz.list');       
     Route::get('/form', 'QuizController@form')->name('quiz.form');       
     Route::get('/edit/{id}', 'QuizController@editForm')->name('quiz.edit.form');       

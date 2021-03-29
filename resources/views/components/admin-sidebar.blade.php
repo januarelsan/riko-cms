@@ -22,6 +22,9 @@
             <ul aria-expanded="false" class="collapse">                
                 <li><a href="{{route('quiz.list')}}">List</a></li>
             </ul>
+            <ul aria-expanded="false" class="collapse">                
+                <li><a href="{{route('quiz.leaderboard')}}">Leaderboard</a></li>
+            </ul>
         </li>  
         
     </ul>
