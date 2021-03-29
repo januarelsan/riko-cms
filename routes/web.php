@@ -45,6 +45,7 @@ Route::group(['prefix' => 'player' , 'middleware' => ['auth','activated']], func
     Route::get('/deactivate/{firebase_uuid}', 'PlayerController@deactivate')->name('player.deactivate');              
 
     Route::get('/finishMission/show/{player_activity_id}', 'PlayerFinishMissionController@show')->name('player.finishMission.show');              
+    Route::get('/finishMission/leaderboard/', 'PlayerFinishMissionController@leaderboard')->name('player.finishMission.leaderboard');              
 
     
 });

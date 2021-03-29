@@ -16,4 +16,17 @@ class PlayerFinishMissionController extends Controller
         return view('playerFinishMission-detail', compact('playerFinishMission'));
         
     }
+
+    public function leaderboard(){        
+        $players = Player::all();
+                
+        $players = $players->sortByDesc(function ($player) {
+            return $player->player_activities->max('player_finish_mission.player_activity.activity.id');
+        });
+
+        // return $players;
+        
+        return view('mission-leaderboard', compact('players'));
+        
+    }
 }

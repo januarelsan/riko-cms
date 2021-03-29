@@ -25,6 +25,13 @@
             <ul aria-expanded="false" class="collapse">                
                 <li><a href="{{route('quiz.leaderboard')}}">Leaderboard</a></li>
             </ul>
+        </li> 
+        <li>
+            <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-bookmark-check"></i><span class="hide-menu">Episode</span></a>
+            <ul aria-expanded="false" class="collapse">                
+                <li><a href="{{route('player.finishMission.leaderboard')}}">Leaderboard</a></li>
+            </ul>
+            
         </li>  
         
     </ul>
