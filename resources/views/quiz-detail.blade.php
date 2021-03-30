@@ -261,7 +261,7 @@ $('#playerQuizAnswerTable').DataTable({
             extend: 'excelHtml5',
             text: 'Export Data to Excel',
             exportOptions: {
-                columns: [ 0,1,2,3 ]
+                columns: [ 0,1,2,3,4 ]
             }
         },
             
