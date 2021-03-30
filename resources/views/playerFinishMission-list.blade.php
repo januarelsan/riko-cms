@@ -18,7 +18,11 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">{{ $activity->title }}</h4>
+                @php                    
+                    $episode = floor(($activity->id - 3) / 5) + 1;                    
+                    $mission = (($activity->id - 3) % 5 ) + 1 ;
+                @endphp
+                <h4 class="card-title">Player Finish Episode {{ $episode }} - Mission {{ $mission }}</h4>
                 {{-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> --}}
                 <div class="table-responsive m-t-40">
                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">

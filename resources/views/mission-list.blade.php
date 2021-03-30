@@ -30,15 +30,21 @@
                         </thead>
                         
                         <tbody>
-                            @for ($i = 0; $i < 25; $i++)
-                                
-                            <tr>
-                                <td>{{ $i + 1 }}</td>                                
-                                <td>
-                                    <a href="{{route('player.finishMission.list', $i + 3)}}" data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>                                        
-                                </td>                                    
-                                
-                            </tr>
+                            @php
+                                $id = 0;    
+                            @endphp
+                            @for ($i = 0; $i < 5; $i++)                            
+                                @for ($j = 0; $j < 5; $j++)                            
+                                    <tr>
+                                        <td>Episode {{ $i + 1 }} - Mission {{ $j + 1 }}</td>                                
+                                        <td>
+                                            <a href="{{route('player.finishMission.list', $id + 3)}}" data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>                                        
+                                        </td>                                                                    
+                                    </tr>
+                                    @php
+                                        $id++;    
+                                    @endphp
+                                @endfor                            
                             @endfor
                             
                         </tbody>
