@@ -66,6 +66,7 @@ Route::group(['prefix' => 'quiz' , 'middleware' => ['auth','activated']],  funct
     Route::get('/list', 'QuizController@list')->name('quiz.list');       
     Route::get('/form', 'QuizController@form')->name('quiz.form');       
     Route::get('/edit/{id}', 'QuizController@editForm')->name('quiz.edit.form');       
+    Route::get('/detail/{id}', 'QuizController@detail')->name('quiz.detail');       
     Route::get('/remove/{id}', 'QuizController@remove')->name('quiz.remove');       
     Route::get('/activate/{id}', 'QuizController@activate')->name('quiz.activate');       
     Route::post('/edit/store', 'QuizController@editStore')->name('quiz.edit.store');       

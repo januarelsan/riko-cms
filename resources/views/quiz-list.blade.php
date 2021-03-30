@@ -93,6 +93,7 @@
                                         <a href="{{route('quiz.activate',$quiz->id)}}"><button type="button" class="btn waves-effect waves-light btn-xs btn-success">Activate</button></a>
                                     @else
                                         <a href="{{route('quiz.edit.form',$quiz->id)}}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>                                    
+                                        <a href="{{route('quiz.detail',$quiz->id)}}" data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>                                    
                                         <a href="{{route('quiz.remove',$quiz->id)}}"><button type="button" class="btn waves-effect waves-light btn-xs btn-danger">Deactivate</button></a>                                        
                                     @endif                          
                                 </td>                              

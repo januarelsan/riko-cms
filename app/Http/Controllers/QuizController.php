@@ -54,6 +54,17 @@ class QuizController extends Controller
         return view('quiz-edit', compact('quiz','options','playerQuizAnswers'));
     }
 
+    public function detail($id){        
+        $quiz = Quiz::find($id);
+        $options = Option::where('quiz_id', '=', $id)->get();   
+
+        $playerQuizAnswers = PlayerQuizAnswer::whereHas('option', function (Builder $query) use ($id) {
+            $query->where('quiz_id', $id);
+        })->get();
+        
+        return view('quiz-detail', compact('quiz','options','playerQuizAnswers'));
+    }
+
     public function editStore(Request $request){        
         
         $reqArray = $request->all();       
