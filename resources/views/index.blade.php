@@ -20,7 +20,21 @@
             <div class="card-body">
                 Welcome to RIKO Content Management System
             </div>
+
+            
         </div>
+        <div class="card">
+            <div class="card-body">
+                @if ($scoring_status->activated == 0)                                        
+                    <h3 class="box-title m-b-0">Scoring Status <p class="text-danger"><b>Inactive</b></p></h3>                                    
+                    <a type="button" href="{{ route('scoring.activate') }}" class="btn btn-success">Activate</a>                                        
+                @else
+                    <h3 class="box-title m-b-0">Scoring Status <p class="text-primary"><b>Actived</b></p></h3>                                                               
+                    <a type="button" href="{{ route('scoring.deactivate') }}" class="btn btn-danger">Deactive</a>                                        
+                @endif    
+            </div>    
+        </div>
+        
     </div>
 </div>
 

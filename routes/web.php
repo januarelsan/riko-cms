@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\ScoringStatus;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,9 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('index');
+    $scoring_status = ScoringStatus::find(1);    
+    return view('index',compact('scoring_status'));
+
 })->middleware(['auth', 'activated'])->name('index');
 
 Auth::routes();
@@ -40,6 +43,8 @@ Route::group(['prefix' => 'admin',  'middleware' => ['auth','activated']], funct
 Route::group(['prefix' => 'player' , 'middleware' => ['auth','activated']], function()
 {
     
+    Route::get('/activate/scoring', 'PlayerController@activateScoringStatus')->name('scoring.activate');    
+    Route::get('/deactivate/scoring', 'PlayerController@deactivateScoringStatus')->name('scoring.deactivate');    
     Route::get('/list', 'PlayerController@list')->name('player.list');     
     Route::get('/leaderboard', 'PlayerController@leaderboard')->name('player.leaderboard');     
     Route::get('/detail/{firebase_uuid}', 'PlayerController@detail')->name('player.detail');    

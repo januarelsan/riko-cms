@@ -8,29 +8,37 @@ use App\Option;
 use App\Activity;
 use App\PlayerActivity;
 use App\PlayerQuizAnswer;
+use App\ScoringStatus;
 
 class QuizAPIController extends Controller
 {
     //
     public function answer(Request $request){        
         
-        // Create Player Activity - Start
-        $data = [
-            'player_firebase_uuid' => $request->firebase_uuid,            
-            'activity_id' => 2,            
-        ];
+        $scoring_status = ScoringStatus::find(1);  
 
-        $playerActivity = PlayerActivity::create($data);        
-        //Create Player Activity - End
+        if($scoring_status->activated == 1){
 
-        //Create Player Quiz Answer - Start
-        $data = [
-            'player_activity_id' => $playerActivity->id,
-            'option_id' => $request->option_id,    
-        ];
-        $playerQuizAnswer = PlayerQuizAnswer::create($data);        
-        //Create Player Quiz Answer - End
-        return "Player Quiz Answer Sent";        
+            // Create Player Activity - Start
+            $data = [
+                'player_firebase_uuid' => $request->firebase_uuid,            
+                'activity_id' => 2,            
+            ];
+    
+            $playerActivity = PlayerActivity::create($data);        
+            //Create Player Activity - End
+    
+            //Create Player Quiz Answer - Start
+            $data = [
+                'player_activity_id' => $playerActivity->id,
+                'option_id' => $request->option_id,    
+            ];
+            $playerQuizAnswer = PlayerQuizAnswer::create($data);        
+            //Create Player Quiz Answer - End
+            return "Player Quiz Answer Sent";        
+        } else {
+            return "Scoring is Inactived";
+        }
     }
 
     public function listAPIFour(){        

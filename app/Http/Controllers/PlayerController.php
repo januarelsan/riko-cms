@@ -6,10 +6,29 @@ use Illuminate\Http\Request;
 use App\Player;
 use App\PlayerActivity;
 use App\PlayerFinishMission;
+use App\ScoringStatus;
 
 class PlayerController extends Controller
 {
     //
+    public function activateScoringStatus(){        
+        
+        $scoring_status = ScoringStatus::find(1);    
+        $scoring_status->activated = 1;                
+        $scoring_status->save();      
+
+        return redirect()->back();
+    }
+
+    public function deactivateScoringStatus(){        
+        
+        $scoring_status = ScoringStatus::find(1);    
+        $scoring_status->activated = 0;                
+        $scoring_status->save();      
+        
+        return redirect()->back();
+    }
+
     public function detail($firebase_uuid){        
         $player = Player::find($firebase_uuid);      
         
