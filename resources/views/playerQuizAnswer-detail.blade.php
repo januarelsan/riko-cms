@@ -43,13 +43,7 @@
             <h3 class="box-title m-b-0">Player</h3>
             <p class="text-muted m-b-30 font-13"> Answer  </p>            
             <div class="row">
-                <div class="col-sm-12 col-xs-12">
-                                        
-                    <div class="form-group">
-                        <label>Quiz Code</label>
-                        <input disabled class="form-control" rows="3"  value="{{$playerQuizAnswer->option->quiz->code}}">
-                        
-                    </div>
+                <div class="col-sm-12 col-xs-12">                                                            
 
                     <div class="form-group">
                         <label>Question</label>
