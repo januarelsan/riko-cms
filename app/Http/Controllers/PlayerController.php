@@ -15,15 +15,18 @@ class PlayerController extends Controller
     public function dauList(Request $request){        
         
         $from = $request->from;
-        $to = $request->to;
+        $to = $request->to;        
 
         if($from == $to){
+            
             $players = Player::whereHas('player_activities', function (Builder $query) use($from){
                 $query->whereDate('created_at', '=' , $from);
             })->get();
         }else{
+            
             $players = Player::whereHas('player_activities', function (Builder $query) use($from, $to){
-                $query->whereBetween('created_at', [$from, $to]);
+                $query->whereDate('created_at', '>=', $from)
+                ->whereDate('created_at', '<=', $to);
             })->get();
         }
             
