@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Response;
 use App\Quiz;
 use App\Option;
 use App\Activity;
@@ -12,6 +13,7 @@ use App\PlayerActivity;
 use App\PlayerQuizAnswer;
 
 use App\Imports\QuizImport;
+use App\Imports\QuizImportFour;
 use App\Exports\QuizExport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -93,12 +95,11 @@ class QuizController extends Controller
     }
 
     public function store(Request $request){        
-        $highestCode = Quiz::max('code');
+        
         $reqArray = $request->all();       
         $keys = array_keys($reqArray);
 
-        $data = [
-            'code' => $highestCode + 1,
+        $data = [            
             'question' => $request->question,            
         ];
 
@@ -149,15 +150,36 @@ class QuizController extends Controller
     }
 
     
-    public function import() 
-    {        
-        
+    public function importTwoOption() 
+    {                
         $validated = request()->validate([
             'file' => ['required', 'mimes:xlsx']      
             
-        ]);
-                                        
+        ]);                                        
         Excel::import(new QuizImport,request()->file('file'));                   
         return redirect()->back()->with('message','message');  
+    }
+
+    public function importFourOption() 
+    {                
+        $validated = request()->validate([
+            'file' => ['required', 'mimes:xlsx']      
+            
+        ]);                                        
+        Excel::import(new QuizImportFour,request()->file('file'));                   
+        return redirect()->back()->with('message','message');  
+    }
+
+    public function downloadTwoTemplate(){
+
+        $file = public_path()."/files/Quiz Two Option Template.xlsx";
+        
+        return response()->download($file);
+    }
+
+    public function downloadFourTemplate(){
+
+        $file = public_path()."/files/Quiz Four Option Template.xlsx";        
+        return response()->download($file);
     }
 }

@@ -46,13 +46,33 @@
         @endif
         <div class="card">
             <div class="card-body">                
-                <form action="{{ route('quiz.import.store') }}" method="POST" enctype="multipart/form-data">
-                {{ csrf_field() }}
+                <form action="{{ route('quiz.import.two.store') }}" method="POST" enctype="multipart/form-data">
+                    {{ csrf_field() }}
                     <div class="form-group">                        
-                        <h4 class="card-title">File Upload</h4>                        
+                        <h4 class="card-title">File Upload Two Option</h4>   
+                        <p class="text-muted m-b-30 font-13">File yang anda import harus dengan format .xlsx dan dengan ukuran max 2MB</p>
+                        
                         <input required type="file" name="file" id="input-file-now" class="dropify" />
                     </div>                    
                     <button class="btn btn-success">Import Quiz Data</button>
+                    <a type="button" href="{{ route('quiz.download.two') }}" class="btn btn-inverse">Download Template</a>
+                </form>
+            </div>
+            
+        </div>
+
+        <div class="card">
+            <div class="card-body">                
+                <form action="{{ route('quiz.import.four.store') }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                    <div class="form-group">                        
+                        <h4 class="card-title">File Upload Four Option</h4>   
+                        <p class="text-muted m-b-30 font-13">File yang anda import harus dengan format .xlsx dan dengan ukuran max 2MB</p>
+                        
+                        <input required type="file" name="file" id="input-file-now" class="dropify" />
+                    </div>                    
+                    <button class="btn btn-success">Import Quiz Data</button>
+                    <a type="button" href="{{ route('quiz.download.four') }}" class="btn btn-inverse">Download Template</a>
                 </form>
             </div>
             

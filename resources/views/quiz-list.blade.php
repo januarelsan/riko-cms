@@ -24,8 +24,7 @@
                 <div class="table-responsive m-t-40">
                     <table id="quizTable" class="table table-bordered table-striped" cellspacing="0" width="100%">
                         <thead>
-                            <tr>
-                                <th style="width: 111px;">Code</th>
+                            <tr>                                
                                 <th>Question</th>
                                 <th>Answer</th>
                                 <th hidden>Option 1</th>
@@ -46,7 +45,7 @@
                                 $correct_option = 2;
                             @endphp
                             <tr>
-                                <td>{{$quiz->code}}</td>
+                                
                                 <td>{{ \Illuminate\Support\Str::limit($quiz->question, 100, $end=' ...') }} </td>       
                                 @foreach ($quiz->options as $option)                                    
                                     @if($option->correct_option == 1)

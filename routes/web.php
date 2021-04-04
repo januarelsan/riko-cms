@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\ScoringStatus;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,7 +78,10 @@ Route::group(['prefix' => 'quiz' , 'middleware' => ['auth','activated']],  funct
     Route::post('/edit/store', 'QuizController@editStore')->name('quiz.edit.store');       
     Route::post('/store', 'QuizController@store')->name('quiz.store');       
     Route::get('/import/form', 'QuizController@importExportView')->name('quiz.import.form');       
-    Route::post('/import/store', 'QuizController@import')->name('quiz.import.store');
+    Route::post('/import/store/two', 'QuizController@importTwoOption')->name('quiz.import.two.store');
+    Route::post('/import/store/four', 'QuizController@importFourOption')->name('quiz.import.four.store');
+    Route::get('/download/two', 'QuizController@downloadTwoTemplate')->name('quiz.download.two');
+    Route::get('/download/four', 'QuizController@downloadFourTemplate')->name('quiz.download.four');
     
 
     Route::get('/export', 'QuizController@export')->name('quiz.export');

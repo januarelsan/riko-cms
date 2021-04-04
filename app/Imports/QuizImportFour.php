@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use App\Quiz;
 use App\Option;
 
-class QuizImport implements ToModel, WithHeadingRow
+class QuizImportFour implements ToModel, WithHeadingRow
 {
     
     /**
@@ -17,11 +17,11 @@ class QuizImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        
-        if(isset($row['question'], $row['option_a'], $row['option_b'],$row['correct_option'])){
+        if(isset($row['question'], $row['option_a'], $row['option_b'], $row['option_c'], $row['option_d'], $row['correct_option'])){
+            // return dd($row);
             
-            $optionKeys = array("option_a", "option_b");                        
-                        
+            $optionKeys = array("option_a", "option_b", "option_c", "option_d");                        
+        
             $quiz = new Quiz([                
                 'question' => $row['question'],                        
                 'removed'  => 0,                        
@@ -29,7 +29,7 @@ class QuizImport implements ToModel, WithHeadingRow
             
             $quiz->save();            
 
-            for ($i=0; $i < 2; $i++) { 
+            for ($i=0; $i < 4; $i++) { 
                 if (isset($row[$optionKeys[$i]])) {                        
                     $option = new Option([
                         'quiz_id'=> $quiz->id,                        
@@ -43,7 +43,13 @@ class QuizImport implements ToModel, WithHeadingRow
                             break;
                         case "B":
                             $correct_option = 1;
-                            break;                        
+                            break;
+                        case "C":
+                            $correct_option = 2;
+                            break;
+                        case "D":
+                            $correct_option = 3;
+                            break;
                     }
                     if($correct_option == $i){
                         $option->correct_option = 1;
@@ -51,7 +57,7 @@ class QuizImport implements ToModel, WithHeadingRow
                     $option->save();
                 }
             }
-            
+        
         }
 
     }

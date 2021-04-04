@@ -14,8 +14,7 @@ class CreateQuizzesTable extends Migration
     public function up()
     {
         Schema::create('quizzes', function (Blueprint $table) {
-            $table->id();          
-            $table->integer('code')->unique();      
+            $table->id();                      
             $table->string('question');            
             $table->boolean('removed')->default(0);    
             $table->timestamps();
