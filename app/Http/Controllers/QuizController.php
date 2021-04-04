@@ -153,7 +153,7 @@ class QuizController extends Controller
     public function importTwoOption() 
     {                
         $validated = request()->validate([
-            'file' => ['required', 'mimes:xlsx']      
+            'file' => ['required', 'mimes:xlsx', 'max:2024']      
             
         ]);                                        
         Excel::import(new QuizImport,request()->file('file'));                   
@@ -163,8 +163,7 @@ class QuizController extends Controller
     public function importFourOption() 
     {                
         $validated = request()->validate([
-            'file' => ['required', 'mimes:xlsx']      
-            
+            'file' => ['required', 'mimes:xlsx', 'max:2024']                              
         ]);                                        
         Excel::import(new QuizImportFour,request()->file('file'));                   
         return redirect()->back()->with('message','message');  
