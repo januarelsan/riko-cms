@@ -9,6 +9,7 @@
             <ul aria-expanded="false" class="collapse">                
                 <li><a href="{{route('player.list')}}">List</a></li>
                 <li><a href="{{route('player.leaderboard')}}">Leaderboard</a></li>
+                <li><a href="{{route('player.default.dau.list')}}">Daily Active Player</a></li>
             </ul>
         </li>  
         <li>

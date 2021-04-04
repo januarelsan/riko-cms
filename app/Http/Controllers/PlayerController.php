@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 use App\Player;
 use App\PlayerActivity;
 use App\PlayerFinishMission;
@@ -10,7 +11,38 @@ use App\ScoringStatus;
 
 class PlayerController extends Controller
 {
-    //
+    //public function dauList(Request $request, $from = '2021-04-07', $to = '2021-04-08'){        
+    public function dauList(Request $request){        
+        
+        $from = $request->from;
+        $to = $request->to;
+
+        if($from == $to){
+            $players = Player::whereHas('player_activities', function (Builder $query) use($from){
+                $query->whereDate('created_at', '=' , $from);
+            })->get();
+        }else{
+            $players = Player::whereHas('player_activities', function (Builder $query) use($from, $to){
+                $query->whereBetween('created_at', [$from, $to]);
+            })->get();
+        }
+            
+        
+        return view('player-dau-list', compact('players','from','to'));
+    }
+
+    public function defaultDauList(){        
+                
+        $from = '2021-04-01';
+        $to = '2021-04-07';
+            
+        $players = Player::whereHas('player_activities', function (Builder $query) use($from, $to){
+            $query->whereBetween('created_at', [$from, $to]);
+        })->get();
+        
+        return view('player-dau-list', compact('players','from','to'));
+    }
+    
     public function activateScoringStatus(){        
         
         $scoring_status = ScoringStatus::find(1);    

@@ -43,7 +43,9 @@ Route::group(['prefix' => 'admin',  'middleware' => ['auth','activated']], funct
 
 Route::group(['prefix' => 'player' , 'middleware' => ['auth','activated']], function()
 {
-    
+    Route::post('/dau/list', 'PlayerController@dauList')->name('player.dau.list');    
+    Route::get('/default/dau/list', 'PlayerController@defaultDauList')->name('player.default.dau.list');    
+
     Route::get('/activate/scoring', 'PlayerController@activateScoringStatus')->name('scoring.activate');    
     Route::get('/deactivate/scoring', 'PlayerController@deactivateScoringStatus')->name('scoring.deactivate');    
     Route::get('/list', 'PlayerController@list')->name('player.list');     
