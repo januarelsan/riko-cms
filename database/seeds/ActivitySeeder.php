@@ -12,15 +12,17 @@ class ActivitySeeder extends Seeder
     public function run()
     {
         //
-        DB::table('activities')->insert([
-            'title' => "Player Answer Quiz",
-            'description' => "Player Answer Quiz",            
-        ]);        
+               
 
         DB::table('activities')->insert([
             'title' => "Player Login",
             'description' => "Player Login",            
         ]);
+
+        DB::table('activities')->insert([
+            'title' => "Player Answer Quiz",
+            'description' => "Player Answer Quiz",            
+        ]); 
 
         DB::table('activities')->insert(['title' => "Player Finish Mission 1", ]);
         DB::table('activities')->insert(['title' => "Player Finish Mission 2", ]);
