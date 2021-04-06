@@ -11,7 +11,7 @@ class PlayerSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('players')->insert(['firebase_uuid' => 'XuhyPYN9C9Xrv9EQy7280mAe4qj2','name' => 'Januar','email' => 'januarelsan@gmail.com',]);
+        DB::table('players')->insert(['firebase_uuid' => 'hVNqIBJbhyLgY6dpuQ9zEpmYe4K3','name' => 'Januar','email' => 'januarelsan@gmail.com',]);
         DB::table('players')->insert(['firebase_uuid' => 'qHnsOeNggcfrSsKr70jmV8HT08V2','email' => 'aidaassalam@gmail.com',]);
         DB::table('players')->insert(['firebase_uuid' => '17orZV38nYSWBToKeaMSzAfW9xo1','email' => 'elyaningsih948@gmail.com',]);
         DB::table('players')->insert(['firebase_uuid' => 'kEL4gPn2wChaZGZfVbcKdfzBozi1','email' => 'rresmisari@gmail.com',]);
