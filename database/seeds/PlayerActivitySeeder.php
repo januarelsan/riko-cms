@@ -15,7 +15,7 @@ class PlayerActivitySeeder extends Seeder
     {
         //
         DB::table('player_activities')->insert([
-            'player_firebase_uuid' => "XuhyPYN9C9Xrv9EQy7280mAe4qj2",
+            'player_firebase_uuid' => "hVNqIBJbhyLgY6dpuQ9zEpmYe4K3",
             'activity_id' => 1,            
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
