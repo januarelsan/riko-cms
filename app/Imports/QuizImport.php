@@ -2,24 +2,20 @@
 
 namespace App\Imports;
 
-use Maatwebsite\Excel\Concerns\ToModel;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 use App\Quiz;
 use App\Option;
 
-class QuizImport implements ToModel, WithHeadingRow
+class QuizImport implements ToCollection, WithHeadingRow, WithValidation
 {
-    
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+    public function collection(Collection $rows)
     {
         
-        if(isset($row['question'], $row['option_a'], $row['option_b'],$row['correct_option'])){
-            
+        foreach ($rows as $row) 
+        {
             $optionKeys = array("option_a", "option_b");                        
                         
             $quiz = new Quiz([                
@@ -51,10 +47,38 @@ class QuizImport implements ToModel, WithHeadingRow
                     $option->save();
                 }
             }
-            
         }
-
     }
+
+    public function rules(): array
+    {
+        $this->validOptions=array('a', 'b', 'A', 'B');
+
+        return [
+            'question' => 'required',            
+            'option_a' => 'required',            
+            'option_b' => 'required',            
+            'correct_option' => 'required|in:' . implode(',', $this->validOptions),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function customValidationMessages()
+    {
+        return [
+            'question.required' => 'Question Field is Required',
+            'option_a.required' => 'Option A Field is Required',
+            'option_b.required' => 'Option B Field is Required',
+            'correct_option.required' => 'Correct Option Field is Required',
+            'correct_option.in' => 'Correct Option Field is Invalid.',
+        ];
+    }
+
+    
+
+    
 
     
 

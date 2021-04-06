@@ -85,12 +85,12 @@ class QuizExport implements FromQuery, WithMapping, WithHeadings, WithColumnWidt
     public function styles(Worksheet $sheet)
     {
         $sheet->getStyle('1')->getFont()->setBold(true);
-        $sheet->getProtection()->setSheet(true);        
-
         $sheet->freezePane("A2");
+        
+        // $sheet->getProtection()->setSheet(true);        
 
-        $format = 'A2:G' . ($sheet->getHighestRow()+200);
-        $sheet->getStyle($format)->getProtection()->setLocked(Protection::PROTECTION_UNPROTECTED);        
+        // $format = 'A2:G' . ($sheet->getHighestRow()+200);
+        // $sheet->getStyle($format)->getProtection()->setLocked(Protection::PROTECTION_UNPROTECTED);        
         
     }
 }
