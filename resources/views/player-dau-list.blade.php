@@ -42,7 +42,8 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>UUID</th>                                
+                                <th>UUID</th>                                                                                           
+                                <th>Score</th>                                                                                           
                                 <th>Status</th>    
                                 <th>Actions</th>                                
                             </tr>
@@ -57,6 +58,15 @@
                                     
                                     <td>{{$player->email}}</td>                              
                                     <td>{{$player->firebase_uuid}}</td>      
+
+                                    @php         
+                                        $total_score = 0;
+                                        foreach ($player->player_activities_between_date($from, $to) as $playerActivity) {
+                                            $total_score += $playerActivity->player_finish_mission->scores;    
+                                        }
+                                    @endphp
+                                    <td>{{$total_score}}</td>    
+
                                     
                                     
                                     @if ($player->isActivated())                                        
