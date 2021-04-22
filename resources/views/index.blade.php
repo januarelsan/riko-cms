@@ -31,11 +31,39 @@
                 @else
                     <h3 class="box-title m-b-0">Scoring Status <p class="text-primary"><b>Actived</b></p></h3>                                                               
                     <a type="button" href="{{ route('scoring.deactivate') }}" class="btn btn-danger">Deactive</a>                                        
-                @endif    
+                @endif                                   
+
+            </div>    
+        </div>
+
+        
+        
+    </div>
+
+    <div class="col-6">
+        
+        <div class="card">
+            <div class="card-body">
+                
+                <h4 class="card-title">Daily Active Player</h4>
+                <div class="ct-bar-chart" style="height: 400px;"></div>
             </div>    
         </div>
         
     </div>
 </div>
+
+@endsection
+
+
+
+
+@section('scripts')
+
+<!-- chartist chart -->
+<script src="{{asset ('material/plugins/chartist-js/dist/chartist.min.js')}}"></script>
+<script src="{{asset ('material/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js')}}"></script>
+<script src="{{asset ('material/plugins/chartist-js/dist/chartist-init.js')}}"></script>
+
 
 @endsection

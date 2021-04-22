@@ -15,11 +15,16 @@
     <link href="{{asset ('material/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- toast CSS -->
     <link href="{{asset ('material/plugins/toast-master/css/jquery.toast.css')}}" rel="stylesheet">
+    <!-- chartist CSS -->
+    <link href="{{asset ('material/plugins/chartist-js/dist/chartist.min.css')}}" rel="stylesheet">
+    <link href="{{asset ('material/plugins/chartist-js/dist/chartist-init.css')}}" rel="stylesheet">
+    <link href="{{asset ('material/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css')}}" rel="stylesheet">
+    
     <!-- Custom CSS -->
     <link href="{{asset ('material/css/style.css')}}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="{{asset ('material/css/colors/blue.css')}}" id="theme" rel="stylesheet">
-    <!-- You can change the theme colors from here -->
+    
     <link rel="stylesheet" href="{{asset ('material/plugins/dropify/dist/css/dropify.min.css')}}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -179,6 +184,7 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 @yield('content')
+                
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -229,6 +235,7 @@
     <script src="{{asset ('material/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <!-- jQuery file upload -->
     <script src="{{asset ('material/plugins/dropify/dist/js/dropify.min.js')}}"></script>
+    
     @yield('scripts')
 </body>
 

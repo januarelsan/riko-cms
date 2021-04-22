@@ -227,16 +227,42 @@ chart.on('draw', function(data) {
 // Bar chart
 
 var data = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  labels: ['20/04/2021', '21/04/2021', '22/04/2021', '23/04/2021', '24/04/2021', '25/04/2021', '26/04/2021'],
   series: [
-    [5, 4, 3, 7, 5, 10, 3, 4, 8, 10, 6, 8],
-    [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4]
-  ]
+    [500, 445, 325, 286, 565, 102, 300]
+  ],
+  
+  
 };
 
 var options = {
-  seriesBarDistance: 10
+  seriesBarDistance: 100,
+  
+  axisY: {
+    // The offset of the chart drawing area to the border of the container
+    offset: 40,
+    // Position where labels are placed. Can be set to `start` or `end` where `start` is equivalent to left or top on vertical axis and `end` is equivalent to right or bottom on horizontal axis.
+    position: 'start',
+    // Allows you to correct label positioning on this axis by positive or negative x and y offset.
+    labelOffset: {
+      x: 0,
+      y: 0
+    },
+    // If labels should be shown or not
+    showLabel: true,
+    // If the axis grid should be drawn or not
+    showGrid: true,
+    // Interpolation function that allows you to intercept the value from the axis label
+    labelInterpolationFnc: Chartist.noop,
+    // This value specifies the minimum height in pixel of the scale steps
+    scaleMinSpace: 20,
+    // Use only integer values (whole numbers) for the scale steps
+    onlyInteger: true
+  },
+  
+    
 };
+
 
 var responsiveOptions = [
   ['screen and (max-width: 640px)', {
@@ -246,7 +272,30 @@ var responsiveOptions = [
       labelInterpolationFnc: function (value) {
         return value[0];
       }
-    }
+    },
+    axisY: {
+      // The offset of the chart drawing area to the border of the container
+      offset: 40,
+      // Position where labels are placed. Can be set to `start` or `end` where `start` is equivalent to left or top on vertical axis and `end` is equivalent to right or bottom on horizontal axis.
+      position: 'start',
+      // Allows you to correct label positioning on this axis by positive or negative x and y offset.
+      labelOffset: {
+        x: 0,
+        y: 0
+      },
+      // If labels should be shown or not
+      showLabel: true,
+      // If the axis grid should be drawn or not
+      showGrid: true,
+      // Interpolation function that allows you to intercept the value from the axis label
+      labelInterpolationFnc: Chartist.noop,
+      // This value specifies the minimum height in pixel of the scale steps
+      scaleMinSpace: 20,
+      // Use only integer values (whole numbers) for the scale steps
+      onlyInteger: true
+      
+    },
+    
   }]
 ];
 
