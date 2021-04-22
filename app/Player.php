@@ -34,6 +34,7 @@ class Player extends Model
         return $this->hasMany(PlayerActivity::class)->where([            
             ['activity_id', '>=', 3],
             ['activity_id', '<=', 27],            
-        ])->whereBetween('created_at', [$from, $to])->get();
+        ])->whereDate('created_at', '>=', $from)
+        ->whereDate('created_at', '<=', $to)->get();
     }
 }
