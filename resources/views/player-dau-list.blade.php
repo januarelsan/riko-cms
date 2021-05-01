@@ -110,7 +110,7 @@
 
 $('#example23').DataTable({
     dom: 'Bfrtip',
-    "ordering": false  ,
+    "ordering": true  ,
     buttons: [
         
         {
